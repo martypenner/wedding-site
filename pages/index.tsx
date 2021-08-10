@@ -21,7 +21,7 @@ export default function Home() {
                 <header id="public-page-header" className="clearfix">
                   <div id="public-page-details" className="hidden md:flex mb-6">
                     <h5 className="text-2xl ml-8 lg:ml-0 mr-10 wedding-date">
-                      October 4, 2020
+                      October 15, 2021
                     </h5>
                     <h5 className="text-2xl wedding-location">
                       Parry Sound, Ontario
@@ -237,10 +237,10 @@ export default function Home() {
                                     <span className="numeric">10</span>
                                     <span className="word">October</span>
                                   </div>
-                                  <span className="day">4</span>
+                                  <span className="day">15</span>
                                   <div className="year">
-                                    <span className="full">2020</span>
-                                    <span className="minimal">20</span>
+                                    <span className="full">2021</span>
+                                    <span className="minimal">21</span>
                                   </div>
                                 </h3>
                               </div>
