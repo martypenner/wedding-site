@@ -7,7 +7,7 @@ class MyDocument extends Document {
         <Head>
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Cardo:400,400i,700|Montserrat:200,400&display=optional"
+            href="https://fonts.googleapis.com/css?family=Cardo:400,400i,700|Montserrat:200,400&display=swap"
           />
 
           {/* <script
