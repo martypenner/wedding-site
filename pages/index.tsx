@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import React from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -28,7 +30,9 @@ export default function Home() {
 
                   <div className="col-xs-12 website-title">
                     <h1 id="public-page-title" className="hidden md:block mb-4">
-                      <a href="/">Marty & Meaghan</a>
+                      <Link href="/">
+                        <a>Marty & Meaghan</a>
+                      </Link>
                     </h1>
 
                     {/* <div className="visible-sm visible-xs">
@@ -70,7 +74,9 @@ export default function Home() {
                    */}
 
                     <h1 className="block md:hidden">
-                      <a href="/">Marty & Meaghan</a>
+                      <Link href="/">
+                        <a>Marty & Meaghan</a>
+                      </Link>
                     </h1>
                     <div className="website-title__cart hidden-md hidden-lg"></div>
                   </div>
