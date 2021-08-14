@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-montserrat;
+    color: #21201f;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #434343;
+    @apply tracking-wider;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+}
+
+.background {
+  background-image: url(/assets/poetry/marble_background.jpg);
+}
+
+.hero-image {
+  background-image: url(/assets/us-smiling-in-greenhouse.jpg);
+}
+
+.bottom-hero-image {
+  background-image: url(/assets/us-in-winter.jpg);
+}
+
+.hero-accent-top-left {
+  background-image: url(/assets/poetry/nohero_top.png);
+}
+
+.hero-accent-bottom-left {
+  background-image: url(/assets/poetry/top_left.png);
+  top: 85%;
+}
+
+.hero-accent-bottom-right {
+  background-image: url(/assets/poetry/top_right.png);
+  top: 64%;
+}
+
+.page-accent-bottom-right {
+  background-image: url(/assets/poetry/bottom_right.png);
+}

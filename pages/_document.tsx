@@ -27,7 +27,7 @@ class MyDocument extends Document {
           /> */}
         </Head>
 
-        <body id="app" className="a b c d e">
+        <body className="antialiased transition-all">
           <Main />
           <NextScript />
         </body>

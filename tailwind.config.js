@@ -8,14 +8,19 @@ module.exports = {
     './pages/**/*.tsx',
   ],
   darkMode: false, // or 'media' or 'class'
-  important: '#app.a.b.c.d.e',
   theme: {
     extend: {
       fontFamily: {
         cardo: ['Cardo'].concat(defaultTheme.fontFamily.sans),
+        montserrat: ['Montserrat'].concat(defaultTheme.fontFamily.sans),
       },
       colors: {
         gray: 'rgb(67, 67, 67)',
+      },
+      spacing: {
+        125: '31.25rem',
+        150: '37.5rem',
+        176: '44rem',
       },
     },
   },
