@@ -52,3 +52,11 @@
 .page-accent-bottom-right {
   background-image: url(/assets/poetry/bottom_right.png);
 }
+
+.accent-top-left {
+  background-image: url(/assets/poetry/nonhp_splatter_01.png);
+}
+
+.accent-top-right {
+  background-image: url(/assets/poetry/nonhp_splatter_02.png);
+}
