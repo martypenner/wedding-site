@@ -39,19 +39,12 @@ export default function InfoLayout({
           </div>
 
           {/* Smaller devices */}
-          <div className="md:hidden">
-            {smallDeviceBlocks.map((block, index) => {
-              const isFirst = index === 0;
-
-              return (
-                <div
-                  key={Math.random()}
-                  className={`mb-16 ${isFirst ? '' : 'border-t border-black'}`}
-                >
-                  {block}
-                </div>
-              );
-            })}
+          <div className="md:hidden divide-y divide-black">
+            {smallDeviceBlocks.map((block) => (
+              <div key={Math.random()} className="mb-16">
+                {block}
+              </div>
+            ))}
           </div>
 
           <div
@@ -66,12 +59,12 @@ export default function InfoLayout({
               return (
                 <div
                   key={Math.random()}
-                  className={`hidden md:flex items-center justify-between ${
+                  className={`hidden md:flex items-center justify-between divide-x divide-black ${
                     isFirst ? 'mt-9' : ''
                   }`}
                 >
                   <div className="w-1/2 py-16 pr-8">{block.left}</div>
-                  <div className="w-1/2 py-16 pl-16 border-l border-black font-cardo text-center">
+                  <div className="w-1/2 py-16 pl-16 font-cardo text-center">
                     {block.right}
                   </div>
                 </div>
