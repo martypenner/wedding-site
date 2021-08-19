@@ -24,8 +24,11 @@
   }
 
   h1 {
-    @apply text-2xl;
     @apply tracking-widest;
+  }
+
+  p {
+    @apply font-cardo;
   }
 
   .font-cardo {

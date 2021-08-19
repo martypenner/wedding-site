@@ -9,6 +9,7 @@ type Props = {
     left: React.ReactNode;
     right: React.ReactNode;
   }[];
+  hasGap?: boolean;
 };
 
 export default function InfoLayout({
@@ -16,6 +17,7 @@ export default function InfoLayout({
   description,
   smallDeviceBlocks,
   largeDeviceBlocks,
+  hasGap = false,
 }: Props) {
   return (
     <BaseLayout title={title}>
@@ -44,7 +46,7 @@ export default function InfoLayout({
               return (
                 <div
                   key={Math.random()}
-                  className={`${isFirst ? 'mb-16' : 'border-t border-black'}`}
+                  className={`mb-16 ${isFirst ? '' : 'border-t border-black'}`}
                 >
                   {block}
                 </div>
@@ -52,35 +54,30 @@ export default function InfoLayout({
             })}
           </div>
 
-          {/* Larger devices */}
-          {largeDeviceBlocks.map((block, index) => {
-            const isFirst = index === 0;
+          <div
+            className={`md:flex flex-col items-stretch justify-between ${
+              hasGap ? 'gap-16' : ''
+            }`}
+          >
+            {/* Larger devices */}
+            {largeDeviceBlocks.map((block, index) => {
+              const isFirst = index === 0;
 
-            return (
-              <div
-                key={Math.random()}
-                className={`hidden md:flex items-center justify-between ${
-                  isFirst ? 'mt-9' : ''
-                }`}
-              >
-                {isFirst ? (
-                  <React.Fragment>
-                    <div className="w-1/2 pt-16 pr-8">{block.left}</div>
-                    <div className="w-1/2 pt-16 pl-16 border-l border-black font-cardo text-center">
-                      {block.right}
-                    </div>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    <div className="w-1/2 pr-8 py-32">{block.left}</div>
-                    <div className="w-1/2 pl-16 py-32 border-l border-black font-cardo text-center">
-                      {block.right}
-                    </div>
-                  </React.Fragment>
-                )}
-              </div>
-            );
-          })}
+              return (
+                <div
+                  key={Math.random()}
+                  className={`hidden md:flex items-center justify-between ${
+                    isFirst ? 'mt-9' : ''
+                  }`}
+                >
+                  <div className="w-1/2 py-16 pr-8">{block.left}</div>
+                  <div className="w-1/2 py-16 pl-16 border-l border-black font-cardo text-center">
+                    {block.right}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </BaseLayout>

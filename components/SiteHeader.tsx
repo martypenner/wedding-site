@@ -11,7 +11,7 @@ export default function SiteHeader() {
         <h3 className="font-cardo text-sm italic">Parry Sound, Ontario</h3>
       </div>
 
-      <h1 className="md:text-5xl text-center uppercase m-0 md:mb-4">
+      <h1 className="text-2xl md:text-5xl text-center uppercase m-0 md:mb-4">
         <Link href="/">
           <a>Marty & Meaghan</a>
         </Link>

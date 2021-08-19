@@ -1,15 +1,14 @@
-import React from 'react';
 import { parseISO } from 'date-fns';
-import InfoLayout from '../layouts/InfoLayout';
-import Image from 'next/image';
-import Link from 'next/link';
-import champagne from '../public/assets/champagne.svg';
-import GoogleCalendar from '../components/GoogleCalendar';
 import {
   CalendarOptions,
   GoogleCalendar as GoogleCalendarLink,
   ICalendar,
 } from 'datebook';
+import Image from 'next/image';
+import React from 'react';
+import GoogleCalendar from '../components/GoogleCalendar';
+import InfoLayout from '../layouts/InfoLayout';
+import champagne from '../public/assets/champagne.svg';
 
 const ceremonyConfig: CalendarOptions = {
   title: `Meaghan and Marty's Wedding — Ceremony`,
