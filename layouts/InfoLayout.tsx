@@ -31,7 +31,7 @@ export default function InfoLayout({
           </h2>
 
           <div className="border-b border-black">
-            <p className="font-cardo text-xl text-center tracking-wide max-w-lg mx-auto mb-16 px-4">
+            <p className="font-cardo text-center tracking-wide max-w-lg mx-auto mb-16 px-4">
               {description}
             </p>
           </div>
@@ -66,14 +66,14 @@ export default function InfoLayout({
                 {isFirst ? (
                   <React.Fragment>
                     <div className="w-1/2 pt-16 pr-8">{block.left}</div>
-                    <div className="w-1/2 pt-16 pl-16 border-l border-black font-cardo text-xl text-center tracking-wide">
+                    <div className="w-1/2 pt-16 pl-16 border-l border-black font-cardo text-center tracking-wide">
                       {block.right}
                     </div>
                   </React.Fragment>
                 ) : (
                   <React.Fragment>
                     <div className="w-1/2 pr-8 py-32">{block.left}</div>
-                    <div className="w-1/2 pl-16 py-32 border-l border-black font-cardo text-xl text-center tracking-wide">
+                    <div className="w-1/2 pl-16 py-32 border-l border-black font-cardo text-center tracking-wide">
                       {block.right}
                     </div>
                   </React.Fragment>

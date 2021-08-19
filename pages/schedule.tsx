@@ -45,7 +45,7 @@ export default function Schedule() {
             Ceremony
           </h3>
 
-          <div className="font-cardo italic text-xl text-center tracking-wide">
+          <div className="font-cardo italic text-center tracking-wide">
             <p className="mb-6">Saturday, October 15, 2022</p>
             <p>4:00 pm — 4:30 pm</p>
 
@@ -70,7 +70,7 @@ export default function Schedule() {
             </address>
           </div>
 
-          <div className="font-cardo text-xl text-center tracking-wide">
+          <div className="font-cardo text-center tracking-wide">
             <p className="mb-6">
               This event is black-tie optional. The grass can be soft, so maybe
               rethink stilettos.
@@ -117,7 +117,7 @@ export default function Schedule() {
             Reception
           </h3>
 
-          <div className="font-cardo italic text-xl text-center tracking-wide">
+          <div className="font-cardo italic text-center tracking-wide">
             <p className="mb-6">Saturday, October 15, 2022</p>
             <p>6:00 pm — 1:00 am</p>
 
@@ -142,7 +142,7 @@ export default function Schedule() {
             </address>
           </div>
 
-          <div className="font-cardo text-xl text-center tracking-wide">
+          <div className="font-cardo text-center tracking-wide">
             <p className="mb-6">
               Attire: somewhere between garden and cocktail. The most important
               thing is that you are able to eat, drink, and dance!
@@ -194,7 +194,7 @@ export default function Schedule() {
                 Ceremony
               </h3>
 
-              <div className="font-cardo italic text-xl text-center tracking-wide">
+              <div className="font-cardo italic text-center tracking-wide">
                 <p className="mb-6">Saturday, October 15, 2022</p>
                 <p>4:00 pm — 4:30 pm</p>
               </div>
@@ -275,7 +275,7 @@ export default function Schedule() {
                 Reception
               </h3>
 
-              <div className="font-cardo italic text-xl text-center tracking-wide">
+              <div className="font-cardo italic text-center tracking-wide">
                 <p className="mb-6">Saturday, October 15, 2022</p>
                 <p>6:00 pm — 1:00 am</p>
               </div>
