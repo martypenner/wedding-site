@@ -10,6 +10,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.0",
+    "@heroicons/react": "^1.0.4",
     "date-fns": "^2.23.0",
     "datebook": "^6.5.7",
     "next": "^11.1.0",

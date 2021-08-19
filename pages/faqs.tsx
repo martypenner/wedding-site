@@ -13,7 +13,7 @@ const faqs: Faqs = [
   },
   {
     question: 'Are you registered? Where?',
-    answer: '[TO BE FILLED IN]',
+    answer: 'Not yet, but we will be soon!',
   },
   {
     question: 'Can I bring a date?',
