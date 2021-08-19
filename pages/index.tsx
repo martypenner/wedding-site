@@ -27,7 +27,7 @@ export default function Home() {
         </div>
       </div>
 
-      <h2 className="font-cardo italic font-extrabold text-5xl md:text-7xl text-gray text-center tracking-wider normal-case mx-auto mt-4 md:mt-9 mb-14 p-8 max-w-xs md:max-w-2xl">
+      <h2 className="font-cardo italic font-extrabold text-5xl md:text-7xl text-gray text-center normal-case mx-auto mt-4 md:mt-9 mb-14 p-8 max-w-xs md:max-w-2xl">
         Celebrate with us!
       </h2>
 
@@ -36,14 +36,14 @@ export default function Home() {
 
         <div className="isolate">
           <div className="mb-24 text-4xl md:text-5xl">
-            <h2 className="font-light uppercase mb-3">
+            <h2 className="uppercase mb-3">
               <div className="mb-1">Marty</div>
               <div>Penner</div>
             </h2>
 
             <div className="font-cardo text-3xl italic mb-3">and</div>
 
-            <h2 className="font-light uppercase">
+            <h2 className="uppercase">
               <div className="mb-1">Meaghan</div>
               <div>Jones</div>
             </h2>
@@ -54,7 +54,7 @@ export default function Home() {
             <div className="w-full">
               <div className="font-cardo italic mb-3">in</div>
 
-              <h2 className="block md:flex font-light uppercase">
+              <h2 className="block md:flex uppercase">
                 <div className="mb-1 md:mb-0">Parry Sound</div>
                 <div>Ontario</div>
               </h2>
@@ -63,7 +63,7 @@ export default function Home() {
             <div className="w-full md:w-1/3">
               <div className="font-cardo italic mb-3">on</div>
 
-              <h2 className="block md:flex font-light uppercase">
+              <h2 className="block md:flex uppercase">
                 <div className="mb-1 md:mb-0">October 15</div>
                 <div>2022</div>
               </h2>
@@ -75,7 +75,7 @@ export default function Home() {
             <div className="w-1/3">
               <div className="font-cardo italic mb-3">in</div>
 
-              <h2 className="flex justify-center font-light uppercase">
+              <h2 className="flex justify-center uppercase">
                 Parry Sound, Ontario
               </h2>
             </div>
@@ -83,15 +83,13 @@ export default function Home() {
             <div className="w-1/3">
               <div className="font-cardo italic mb-3">on</div>
 
-              <h2 className="flex justify-center font-light uppercase">
+              <h2 className="flex justify-center uppercase">
                 October 15, 2022
               </h2>
             </div>
           </div>
 
-          <h3 className="mx-8 text-5xl font-extralight uppercase">
-            More info coming soon
-          </h3>
+          <h3 className="mx-8 text-5xl uppercase">More info coming soon</h3>
         </div>
       </div>
 

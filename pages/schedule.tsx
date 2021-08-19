@@ -41,11 +41,11 @@ export default function Schedule() {
     the planet."
       smallDeviceBlocks={[
         <React.Fragment key="ceremony">
-          <h3 className="font-light text-4xl md:text-5xl text-gray text-center tracking-wider uppercase mx-auto p-8">
+          <h3 className="text-4xl md:text-5xl text-gray text-center uppercase mx-auto p-8">
             Ceremony
           </h3>
 
-          <div className="font-cardo italic text-center tracking-wide">
+          <div className="font-cardo italic text-center">
             <p className="mb-6">Saturday, October 15, 2022</p>
             <p>4:00 pm — 4:30 pm</p>
 
@@ -70,7 +70,7 @@ export default function Schedule() {
             </address>
           </div>
 
-          <div className="font-cardo text-center tracking-wide">
+          <div className="font-cardo text-center">
             <p className="mb-6">
               This event is black-tie optional. The grass can be soft, so maybe
               rethink stilettos.
@@ -113,11 +113,11 @@ export default function Schedule() {
         </React.Fragment>,
 
         <React.Fragment key="reception">
-          <h3 className="font-light text-4xl text-gray text-center tracking-wider uppercase mx-auto p-8">
+          <h3 className="text-4xl text-gray text-center uppercase mx-auto p-8">
             Reception
           </h3>
 
-          <div className="font-cardo italic text-center tracking-wide">
+          <div className="font-cardo italic text-center">
             <p className="mb-6">Saturday, October 15, 2022</p>
             <p>6:00 pm — 1:00 am</p>
 
@@ -142,7 +142,7 @@ export default function Schedule() {
             </address>
           </div>
 
-          <div className="font-cardo text-center tracking-wide">
+          <div className="font-cardo text-center">
             <p className="mb-6">
               Attire: somewhere between garden and cocktail. The most important
               thing is that you are able to eat, drink, and dance!
@@ -190,11 +190,11 @@ export default function Schedule() {
         {
           left: (
             <React.Fragment>
-              <h3 className="font-light text-5xl text-gray text-center tracking-wider uppercase mx-auto p-8">
+              <h3 className="text-5xl text-gray text-center uppercase mx-auto p-8">
                 Ceremony
               </h3>
 
-              <div className="font-cardo italic text-center tracking-wide">
+              <div className="font-cardo italic text-center">
                 <p className="mb-6">Saturday, October 15, 2022</p>
                 <p>4:00 pm — 4:30 pm</p>
               </div>
@@ -271,11 +271,11 @@ export default function Schedule() {
         {
           left: (
             <React.Fragment>
-              <h3 className="font-light text-4xl md:text-5xl text-gray text-center tracking-wider uppercase mx-auto p-8">
+              <h3 className="text-4xl md:text-5xl text-gray text-center uppercase mx-auto p-8">
                 Reception
               </h3>
 
-              <div className="font-cardo italic text-center tracking-wide">
+              <div className="font-cardo italic text-center">
                 <p className="mb-6">Saturday, October 15, 2022</p>
                 <p>6:00 pm — 1:00 am</p>
               </div>
@@ -354,6 +354,6 @@ export default function Schedule() {
           ),
         },
       ]}
-    ></InfoLayout>
+    />
   );
 }

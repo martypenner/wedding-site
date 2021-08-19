@@ -19,12 +19,17 @@
   h4,
   h5,
   h6 {
-    color: #434343;
     @apply tracking-wider;
+    color: #434343;
   }
 
   h1 {
     @apply text-2xl;
+    @apply tracking-widest;
+  }
+
+  .font-cardo {
+    @apply tracking-wide;
   }
 }
 
