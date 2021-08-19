@@ -8,6 +8,11 @@
     color: #21201f;
   }
 
+  body * {
+    /* ANIMATE EVERYTHING, because there's no one to oppose me on this great idea muhahaha */
+    @apply transition-all;
+  }
+
   h1,
   h2,
   h3,

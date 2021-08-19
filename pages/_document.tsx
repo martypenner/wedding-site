@@ -27,7 +27,7 @@ class MyDocument extends Document {
           /> */}
         </Head>
 
-        <body className="antialiased transition-all has-background bg-contain bg-center">
+        <body className="antialiased has-background bg-contain bg-center">
           <Main />
           <NextScript />
         </body>
