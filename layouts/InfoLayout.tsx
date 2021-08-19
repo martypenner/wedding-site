@@ -25,7 +25,7 @@ export default function InfoLayout({
         <div className="accent-top-left absolute top-0 left-0 w-1/2 bg-left-top h-150 bg-contain bg-no-repeat pointer-events-none" />
         <div className="accent-top-right absolute top-0 right-0 w-1/2 bg-right-top h-150 bg-contain bg-no-repeat pointer-events-none" />
 
-        <div className="mx-auto max-w-xl md:max-w-4xl">
+        <div className="mx-auto max-w-xl md:max-w-5xl">
           <h2 className="font-light text-5xl md:text-6xl text-gray text-center tracking-wider uppercase mx-auto md:mt-9 mb-8 p-8">
             {title}
           </h2>
