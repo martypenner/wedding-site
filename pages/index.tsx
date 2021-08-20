@@ -88,8 +88,6 @@ export default function Home() {
               </h2>
             </div>
           </div>
-
-          <h3 className="mx-8 text-5xl uppercase">More info coming soon</h3>
         </div>
       </div>
 
