@@ -3,7 +3,7 @@ import { XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ClientOnlyPortal from './ClientOnlyPortal';
 
 const navigationItems = [
   {
@@ -65,72 +65,70 @@ export default function SiteHeader() {
           </svg>
         </button>
 
-        {menuIsVisible &&
-          ReactDOM.createPortal(
-            <Transition.Root show={menuIsVisible} as={React.Fragment}>
-              <Dialog
-                as="div"
-                className="fixed z-10 inset-0 overflow-y-auto h-screen text-center"
-                onClose={setMenuIsVisible}
+        <ClientOnlyPortal selector="body">
+          <Transition.Root show={menuIsVisible} as={React.Fragment}>
+            <Dialog
+              as="div"
+              className="fixed z-10 inset-0 overflow-y-auto h-screen text-center"
+              onClose={setMenuIsVisible}
+            >
+              <Transition.Child
+                as={React.Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
               >
-                <Transition.Child
-                  as={React.Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Dialog.Overlay className="fixed inset-0 bg-white bg-opacity-95 transition-opacity" />
-                </Transition.Child>
+                <Dialog.Overlay className="fixed inset-0 bg-white bg-opacity-95 transition-opacity" />
+              </Transition.Child>
 
-                <Transition.Child
-                  as={React.Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                  enterTo="opacity-100 translate-y-0 sm:scale-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
-                  <div className="h-screen p-8 text-left overflow-hidden transform transition-all">
-                    <div className="absolute top-0 left-0 pt-14 pl-4">
-                      <button
-                        type="button"
-                        className="hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
-                        onClick={() => setMenuIsVisible(false)}
-                      >
-                        <span className="sr-only">Close</span>
-                        <XIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
-                    </div>
-
-                    <nav className="mt-3 mx-8" aria-label="Site menu">
-                      {navigationItems.map((item) => {
-                        const isCurrent = router.pathname === item.href;
-
-                        return (
-                          <Link key={item.name} href={item.href}>
-                            <a
-                              className={classNames(
-                                isCurrent ? 'text-gold' : '',
-                                'flex items-center justify-center px-3 py-2 text-3xl font-medium uppercase hover:underline'
-                              )}
-                              aria-current={isCurrent ? 'page' : undefined}
-                            >
-                              <span className="truncate">{item.name}</span>
-                            </a>
-                          </Link>
-                        );
-                      })}
-                    </nav>
+              <Transition.Child
+                as={React.Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <div className="h-screen p-8 text-left overflow-hidden transform transition-all">
+                  <div className="absolute top-0 left-0 pt-14 pl-4">
+                    <button
+                      type="button"
+                      className="hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                      onClick={() => setMenuIsVisible(false)}
+                    >
+                      <span className="sr-only">Close</span>
+                      <XIcon className="h-6 w-6" aria-hidden="true" />
+                    </button>
                   </div>
-                </Transition.Child>
-              </Dialog>
-            </Transition.Root>,
-            document.body
-          )}
+
+                  <nav className="mt-3 mx-8" aria-label="Site menu">
+                    {navigationItems.map((item) => {
+                      const isCurrent = router.pathname === item.href;
+
+                      return (
+                        <Link key={item.name} href={item.href}>
+                          <a
+                            className={classNames(
+                              isCurrent ? 'text-gold' : '',
+                              'flex items-center justify-center px-3 py-2 text-3xl font-medium uppercase hover:underline'
+                            )}
+                            aria-current={isCurrent ? 'page' : undefined}
+                          >
+                            <span className="truncate">{item.name}</span>
+                          </a>
+                        </Link>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </Transition.Child>
+            </Dialog>
+          </Transition.Root>
+        </ClientOnlyPortal>
 
         <h1 className="flex-1 text-2xl text-center uppercase m-0">
           <Link href="/">
