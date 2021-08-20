@@ -26,10 +26,10 @@ const navigationItems = [
     name: 'Faqs',
     href: '/faqs',
   },
-  // {
-  //   name: 'RSVP',
-  //   href: '/rsvp',
-  // },
+  {
+    name: 'RSVP',
+    href: '/rsvp',
+  },
 ];
 
 function classNames(...classes) {
