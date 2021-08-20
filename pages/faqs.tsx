@@ -17,7 +17,7 @@ const faqs: Faqs = [
   },
   {
     question: 'Can I bring a date?',
-    answer: 'Does your invite say "+1"? Then yes.',
+    answer: 'Does your RSVP (coming soon) say "+1"? Then yes.',
   },
   {
     question: 'Are kids welcome?',
