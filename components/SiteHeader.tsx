@@ -41,7 +41,7 @@ export default function SiteHeader() {
   const [menuIsVisible, setMenuIsVisible] = React.useState(false);
 
   return (
-    <header className="fixed top-0 md:static md:bg-transparent w-full z-10 p-2 md:p-5">
+    <header className="fixed top-0 md:static bg-white md:bg-transparent w-full z-10 p-2 md:p-5">
       <div className="flex items-center md:hidden">
         <button
           type="button"
