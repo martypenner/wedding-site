@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout';
 export default function Home() {
   return (
     <BaseLayout title="Home">
-      <div className="hero-image h-52 md:h-176 mt-12 md:mt-0 relative flex justify-center items-end bg-center bg-cover border-t border-b border-black">
+      <div className="hero-image h-52 md:h-176 relative flex justify-center items-end bg-center bg-cover border-t border-b border-black">
         <div className="hero-accent-top-left absolute top-0 left-0 w-3/4 h-72 bg-no-repeat bg-contain"></div>
         <div className="hero-accent-bottom-left absolute left-0 w-1/4 h-150 bg-no-repeat bg-contain"></div>
         <div className="hero-accent-bottom-right absolute right-0 w-1/4 h-150 bg-no-repeat bg-contain"></div>

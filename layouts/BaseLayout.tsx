@@ -11,7 +11,7 @@ export default function BaseLayout({ title, children }) {
 
       <SiteHeader />
 
-      {children}
+      <div className="mt-12 md:mt-0">{children}</div>
     </React.Fragment>
   );
 }
