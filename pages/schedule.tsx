@@ -39,7 +39,7 @@ export default function Schedule() {
     just kidding. There's no way we're doing that. Think of
     the planet."
       smallDeviceBlocks={[
-        <React.Fragment key="ceremony">
+        <div key="ceremony" className="mx-4">
           <h3 className="text-4xl md:text-5xl text-gray text-center uppercase mx-auto p-8">
             Ceremony
           </h3>
@@ -85,7 +85,7 @@ export default function Schedule() {
             href="https://maps.google.com/?cid=11750416750854890163"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center px-4 py-3 border border-black text-base hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+            className="w-full flex items-center justify-center px-4 py-3 border border-black text-lg hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
           >
             Map
           </a>
@@ -109,9 +109,9 @@ export default function Schedule() {
             <GoogleCalendar className="w-12 h-12 mr-2" aria-hidden="true" />
             Add to Google calendar
           </a>
-        </React.Fragment>,
+        </div>,
 
-        <React.Fragment key="reception">
+        <div key="reception" className="mx-4">
           <h3 className="text-4xl text-gray text-center uppercase mx-auto p-8">
             Reception
           </h3>
@@ -159,7 +159,7 @@ export default function Schedule() {
             href="https://maps.google.com/?cid=11750416750854890163"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center px-4 py-3 border border-black text-base hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+            className="w-full flex items-center justify-center px-4 py-3 border border-black text-lg hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
           >
             Map
           </a>
@@ -183,7 +183,7 @@ export default function Schedule() {
             <GoogleCalendar className="w-12 h-12 mr-2" aria-hidden="true" />
             Add to Google calendar
           </a>
-        </React.Fragment>,
+        </div>,
       ]}
       largeDeviceBlocks={[
         {

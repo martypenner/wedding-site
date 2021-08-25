@@ -48,7 +48,7 @@ export default function Faqs() {
       description="If you have any questions other than what we've listed here, please reach out to us."
       hasGap
       smallDeviceBlocks={faqs.map((faq) => (
-        <div key={Math.random()} className="mt-8 text-center">
+        <div key={Math.random()} className="mt-8 mx-4 text-center">
           <p className="text-lg font-cardo italic mb-4">Question</p>
 
           <h3 className="text-3xl uppercase mb-12">{faq.question}</h3>
