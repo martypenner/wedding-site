@@ -4,18 +4,29 @@ import BaseLayout from './BaseLayout';
 type Props = {
   title: string;
   description: string;
-  smallDeviceBlocks: React.ReactNode[];
-  largeDeviceBlocks: {
-    left: React.ReactNode;
-    right: React.ReactNode;
-  }[];
   hasGap?: boolean;
-};
+} & (
+  | {
+      children: React.ReactNode;
+    }
+  | {
+      smallDeviceBlocks: React.ReactNode[];
+      largeDeviceBlocks: {
+        left: React.ReactNode;
+        right: React.ReactNode;
+      }[];
+    }
+);
 
 export default function InfoLayout({
   title,
   description,
+  // Union types in props, bah
+  // @ts-expect-error
+  children,
+  // @ts-expect-error
   smallDeviceBlocks,
+  // @ts-expect-error
   largeDeviceBlocks,
   hasGap = false,
 }: Props) {
@@ -38,39 +49,43 @@ export default function InfoLayout({
             </p>
           </div>
 
-          {/* Smaller devices */}
-          <div className="md:hidden divide-y divide-black">
-            {smallDeviceBlocks.map((block) => (
-              <div key={Math.random()} className="mb-16">
-                {block}
-              </div>
-            ))}
-          </div>
-
-          <div
-            className={`md:flex flex-col items-stretch justify-between ${
-              hasGap ? 'gap-16' : ''
-            }`}
-          >
-            {/* Larger devices */}
-            {largeDeviceBlocks.map((block, index) => {
-              const isFirst = index === 0;
-
-              return (
-                <div
-                  key={Math.random()}
-                  className={`hidden md:flex items-center justify-between divide-x divide-black ${
-                    isFirst ? 'mt-9' : ''
-                  }`}
-                >
-                  <div className="w-1/2 py-16 pr-8">{block.left}</div>
-                  <div className="w-1/2 py-16 pl-16 font-cardo text-center">
-                    {block.right}
+          {children ?? (
+            <React.Fragment>
+              {/* Smaller devices */}
+              <div className="md:hidden divide-y divide-black">
+                {smallDeviceBlocks.map((block) => (
+                  <div key={Math.random()} className="mb-16">
+                    {block}
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                ))}
+              </div>
+
+              <div
+                className={`md:flex flex-col items-stretch justify-between ${
+                  hasGap ? 'gap-16' : ''
+                }`}
+              >
+                {/* Larger devices */}
+                {largeDeviceBlocks.map((block, index) => {
+                  const isFirst = index === 0;
+
+                  return (
+                    <div
+                      key={Math.random()}
+                      className={`hidden md:flex items-center justify-between divide-x divide-black ${
+                        isFirst ? 'mt-9' : ''
+                      }`}
+                    >
+                      <div className="w-1/2 py-16 pr-8">{block.left}</div>
+                      <div className="w-1/2 py-16 pl-16 font-cardo text-center">
+                        {block.right}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </React.Fragment>
+          )}
         </div>
       </div>
     </BaseLayout>
