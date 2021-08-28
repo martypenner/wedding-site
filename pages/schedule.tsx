@@ -235,14 +235,14 @@ export default function Schedule() {
                     href="https://maps.google.com/?cid=11750416750854890163"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full max-w-xs flex items-center justify-center py-4 px-10 text-lg not-italic border border-black hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+                    className="w-full max-w-xs button"
                   >
                     Map
                   </a>
 
                   <button
                     type="button"
-                    className="w-full max-w-xs flex items-center justify-center py-4 px-10 text-lg border border-black hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+                    className="w-full max-w-xs"
                     onClick={() => {
                       ceremonyICalendar.download();
                     }}
@@ -252,7 +252,7 @@ export default function Schedule() {
 
                   <a
                     href={ceremonyGoogleCalendar.render()}
-                    className="w-full max-w-xs flex items-center justify-center py-4 px-10 text-lg border border-black hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+                    className="w-full max-w-xs button"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -321,14 +321,14 @@ export default function Schedule() {
                   href="https://maps.google.com/?cid=11750416750854890163"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full max-w-xs flex items-center justify-center py-4 px-10 text-lg border border-black hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+                  className="w-full max-w-xs button"
                 >
                   Map
                 </a>
 
                 <button
                   type="button"
-                  className="w-full max-w-xs flex items-center justify-center py-4 px-10 text-lg border border-black hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+                  className="w-full max-w-xs"
                   onClick={() => {
                     receptionICalendar.download();
                   }}
@@ -338,7 +338,7 @@ export default function Schedule() {
 
                 <a
                   href={receptionGoogleCalendar.render()}
-                  className="w-full max-w-xs flex items-center justify-center py-4 px-10 text-lg border border-black hover:text-white uppercase font-semibold bg-gray-100 hover:bg-gray-800 mb-4"
+                  className="w-full max-w-xs button"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

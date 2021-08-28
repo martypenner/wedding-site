@@ -45,6 +45,7 @@ export default function SiteHeader() {
       <div className="flex items-center md:hidden">
         <button
           type="button"
+          className="p-0 m-0 border-0 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
           onClick={() => {
             setMenuIsVisible(true);
           }}
@@ -97,7 +98,7 @@ export default function SiteHeader() {
                   <div className="absolute top-0 left-0 pt-14 pl-4">
                     <button
                       type="button"
-                      className="hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                      className="p-2 m-0 border-0 bg-transparent hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                       onClick={() => setMenuIsVisible(false)}
                     >
                       <span className="sr-only">Close</span>
