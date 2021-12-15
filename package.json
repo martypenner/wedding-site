@@ -13,7 +13,7 @@
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "@tailwindcss/forms": "^0.3.4",
-    "@xstate/react": "^1.6.2",
+    "@xstate/react": "^1.6.3",
     "date-fns": "^2.25.0",
     "datebook": "^6.5.9",
     "firebase": "^8.10.0",
