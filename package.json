@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prisma-query": "ts-node ./prisma-query.ts",
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export",
@@ -41,7 +42,7 @@
     "prettier": "^2.4.0",
     "prisma": "^3.10.0",
     "tailwindcss": "^3.0.23",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.5.0",
     "typescript": "^4.5.4"
   },
   "lint-staged": {
