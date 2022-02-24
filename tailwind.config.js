@@ -1,15 +1,11 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  purge: [
-    './pages/**/*.ts',
-    './pages/**/*.tsx',
-    './components/**/*.ts',
-    './components/**/*.tsx',
-    './layouts/**/*.ts',
-    './layouts/**/*.tsx',
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './layouts/**/*.{ts,tsx}',
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
@@ -25,9 +21,6 @@ module.exports = {
         176: '44rem',
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [require('@tailwindcss/forms')],
 };
