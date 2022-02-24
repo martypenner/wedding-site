@@ -9,6 +9,7 @@ async function main() {
       include: {
         groupedWith: true,
         groupedWithReverse: true,
+        attendanceAnswers: true,
       },
     })
   )

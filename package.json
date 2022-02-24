@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prisma-query": "ts-node ./prisma-query.ts",
+    "prisma-query": "ts-node ./scripts/test-prisma-query.ts",
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export",
