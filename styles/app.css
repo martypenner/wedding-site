@@ -32,17 +32,21 @@
     @apply font-cardo;
   }
 
-  .font-cardo {
-    @apply tracking-wide;
-  }
-
   input[type='text'] {
-    @apply block w-full focus:ring-gold focus:ring-offset-gold focus:border-gold transition-none;
+    @apply focus-gold block w-full transition-none;
   }
 
   button,
   .button {
     @apply flex items-center justify-center px-10 py-4 text-lg uppercase font-montserrat font-semibold border border-black hover:text-white bg-gray-100 hover:bg-gray-800 mb-4;
+  }
+
+  .font-cardo {
+    @apply tracking-wide;
+  }
+
+  .focus-gold {
+    @apply focus:ring-gold focus:ring-offset-gold focus:border-gold;
   }
 
   .button--small {
