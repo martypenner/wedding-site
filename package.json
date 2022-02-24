@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prisma-query": "ts-node ./scripts/test-prisma-query.ts",
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export",
+    "test-query": "ts-node ./prisma/test-prisma-query.ts",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio",
     "prepare": "husky install"
   },
   "dependencies": {

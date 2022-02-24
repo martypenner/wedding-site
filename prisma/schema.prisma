@@ -14,12 +14,12 @@ model Attendee {
 
   attendanceAnswers AttendanceAnswers[]
 
-  groupedWith        Attendee[] @relation("groupedWith", references: [id])
+  partyMembers               Attendee[] @relation("partyMembers", references: [id])
   // This has to be here to differentiate:
   // https://stackoverflow.com/questions/65162657/one-to-many-self-relation-in-prisma-schema
   // and
   // https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations#many-to-many-self-relations
-  groupedWithReverse Attendee[] @relation("groupedWith", references: [id])
+  partyMembersThatIncludedMe Attendee[] @relation("partyMembers", references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
