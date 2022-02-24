@@ -9,7 +9,21 @@ async function main() {
       include: {
         groupedWith: true,
         groupedWithReverse: true,
-        attendanceAnswers: true,
+        attendanceAnswers: {
+          select: {
+            ceremony: {
+              select: {
+                whereSeated: true,
+              },
+            },
+            reception: {
+              select: {
+                dietaryRestrictions: true,
+                anythingElse: true,
+              },
+            },
+          },
+        },
       },
     })
   )

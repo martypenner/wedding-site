@@ -8,28 +8,55 @@ generator client {
 }
 
 model Attendee {
-  id                 Int                 @id @default(autoincrement())
-  name               String
-  allowedEvents      AllowedEvents[]
-  attendanceAnswers  AttendanceAnswers[]
-  groupedWith        Attendee[]          @relation("groupedWith", references: [id])
+  id            Int             @id @default(autoincrement())
+  name          String
+  allowedEvents AllowedEvents[]
+
+  attendanceAnswers AttendanceAnswers[]
+
+  groupedWith        Attendee[] @relation("groupedWith", references: [id])
   // This has to be here to differentiate:
   // https://stackoverflow.com/questions/65162657/one-to-many-self-relation-in-prisma-schema
   // and
   // https://www.prisma.io/docs/concepts/components/prisma-schema/relations/self-relations#many-to-many-self-relations
-  groupedWithReverse Attendee[]          @relation("groupedWith", references: [id])
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
+  groupedWithReverse Attendee[] @relation("groupedWith", references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model AttendanceAnswers {
-  id         Int      @id @default(autoincrement())
-  ceremony   Boolean  @default(false)
-  reception  Boolean  @default(false)
+  id          Int        @id @default(autoincrement())
+  ceremony    Ceremony?  @relation(fields: [ceremonyId], references: [id])
+  ceremonyId  Int?
+  reception   Reception? @relation(fields: [receptionId], references: [id])
+  receptionId Int?
+
   Attendee   Attendee @relation(fields: [attendeeId], references: [id])
   attendeeId Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Ceremony {
+  id                Int                 @id @default(autoincrement())
+  AttendanceAnswers AttendanceAnswers[]
+  whereSeated       String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reception {
+  id                  Int                 @id @default(autoincrement())
+  AttendanceAnswers   AttendanceAnswers[]
+  dietaryRestrictions String?
+  anythingElse        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum AllowedEvents {
