@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 // A `main` function so that you can use async/await
 async function main() {
+  const name = 'Theo Boniferous';
   const allAttendees = await prisma.attendee.findMany({
     include: {
       partyMembers: true,
@@ -32,14 +33,14 @@ async function main() {
         {
           partyMembers: {
             some: {
-              name: 'Marty Penner',
+              name,
             },
           },
         },
         {
           partyMembersThatIncludedMe: {
             some: {
-              name: 'Marty Penner',
+              name,
             },
           },
         },
@@ -55,6 +56,26 @@ async function main() {
   // use `console.dir` to print nested objects
   console.dir(allAttendees, { depth: null });
   console.dir(linkedAttendees, { depth: null });
+
+  await prisma.attendanceAnswers.update({
+    where: {
+      id: 1,
+    },
+    data: {
+      ceremony: {
+        upsert: {
+          create: {
+            willAttend: true,
+            whereSeated: 'here',
+          },
+          update: {
+            willAttend: false,
+            whereSeated: 'there',
+          },
+        },
+      },
+    },
+  });
 }
 
 main()

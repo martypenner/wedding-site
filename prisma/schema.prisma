@@ -43,6 +43,7 @@ model AttendanceAnswers {
 model Ceremony {
   id                Int                 @id @default(autoincrement())
   AttendanceAnswers AttendanceAnswers[]
+  willAttend        Boolean
   whereSeated       String?
 
   createdAt DateTime @default(now())
@@ -52,6 +53,7 @@ model Ceremony {
 model Reception {
   id                  Int                 @id @default(autoincrement())
   AttendanceAnswers   AttendanceAnswers[]
+  willAttend          Boolean
   dietaryRestrictions String?
   anythingElse        String?
 
