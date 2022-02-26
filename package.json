@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "export": "npm run build && next export",
-    "test-query": "ts-node ./prisma/test-prisma-query.ts",
-    "migrate": "prisma migrate dev",
-    "studio": "prisma studio",
+    "db:test-query": "ts-node ./prisma/test-prisma-query.ts",
+    "db:reset": "prisma migrate reset",
+    "db:migrate": "prisma migrate dev",
     "prepare": "husky install"
   },
   "dependencies": {
