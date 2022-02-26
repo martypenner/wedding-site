@@ -12,7 +12,7 @@ model Attendee {
   name          String          @unique
   allowedEvents AllowedEvents[]
 
-  attendanceAnswers AttendanceAnswers[]
+  attendanceAnswer AttendanceAnswer?
 
   partyMembers               Attendee[] @relation("partyMembers", references: [id])
   // This has to be here to differentiate:
@@ -25,15 +25,13 @@ model Attendee {
   updatedAt DateTime @updatedAt
 }
 
-model AttendanceAnswers {
-  id          Int        @id @default(autoincrement())
-  ceremony    Ceremony?  @relation(fields: [ceremonyId], references: [id])
-  ceremonyId  Int?
-  reception   Reception? @relation(fields: [receptionId], references: [id])
-  receptionId Int?
+model AttendanceAnswer {
+  id        Int        @id @default(autoincrement())
+  ceremony  Ceremony?  @relation()
+  reception Reception? @relation()
 
   Attendee   Attendee @relation(fields: [attendeeId], references: [id])
-  attendeeId Int
+  attendeeId Int      @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -41,18 +39,20 @@ model AttendanceAnswers {
 }
 
 model Ceremony {
-  id                Int                 @id @default(autoincrement())
-  AttendanceAnswers AttendanceAnswers[]
-  willAttend        Boolean
-  whereSeated       String?
+  id                 Int              @id @default(autoincrement())
+  AttendanceAnswer   AttendanceAnswer @relation(fields: [attendanceAnswerId], references: [id])
+  attendanceAnswerId Int              @unique
+  willAttend         Boolean
+  whereSeated        String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Reception {
-  id                  Int                 @id @default(autoincrement())
-  AttendanceAnswers   AttendanceAnswers[]
+  id                  Int              @id @default(autoincrement())
+  AttendanceAnswer    AttendanceAnswer @relation(fields: [attendanceAnswerId], references: [id])
+  attendanceAnswerId  Int              @unique
   willAttend          Boolean
   dietaryRestrictions String?
   anythingElse        String?

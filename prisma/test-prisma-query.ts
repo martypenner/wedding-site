@@ -4,20 +4,22 @@ const prisma = new PrismaClient();
 
 // A `main` function so that you can use async/await
 async function main() {
-  const name = 'Theo Boniferous';
+  const name = 'Theo Boniferous'.toLowerCase();
   const allAttendees = await prisma.attendee.findMany({
     include: {
       partyMembers: true,
       partyMembersThatIncludedMe: true,
-      attendanceAnswers: {
+      attendanceAnswer: {
         select: {
           ceremony: {
             select: {
+              willAttend: true,
               whereSeated: true,
             },
           },
           reception: {
             select: {
+              willAttend: true,
               dietaryRestrictions: true,
               anythingElse: true,
             },
@@ -33,14 +35,20 @@ async function main() {
         {
           partyMembers: {
             some: {
-              name,
+              name: {
+                equals: name,
+                mode: 'insensitive',
+              },
             },
           },
         },
         {
           partyMembersThatIncludedMe: {
             some: {
-              name,
+              name: {
+                equals: name,
+                mode: 'insensitive',
+              },
             },
           },
         },
@@ -49,7 +57,7 @@ async function main() {
     include: {
       partyMembers: true,
       partyMembersThatIncludedMe: true,
-      attendanceAnswers: true,
+      attendanceAnswer: true,
     },
   });
 
@@ -57,21 +65,15 @@ async function main() {
   console.dir(allAttendees, { depth: null });
   console.dir(linkedAttendees, { depth: null });
 
-  await prisma.attendanceAnswers.update({
+  await prisma.attendanceAnswer.update({
     where: {
       id: 1,
     },
     data: {
       ceremony: {
-        upsert: {
-          create: {
-            willAttend: true,
-            whereSeated: 'here',
-          },
-          update: {
-            willAttend: false,
-            whereSeated: 'there',
-          },
+        update: {
+          willAttend: false,
+          whereSeated: 'there',
         },
       },
     },
