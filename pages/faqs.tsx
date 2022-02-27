@@ -37,7 +37,7 @@ const faqs: Faqs = [
 	{
 		question:
 			'Are there any other events that I should know about around the wedding?',
-		answer: `Play a round on the golf course! We're brewing up some other ideas too, so check back soon before the wedding.`,
+		answer: `Unfortunately, the golf course closes the week before. We're brewing up some other ideas, so check back soon before the wedding.`,
 	},
 ];
 
