@@ -3,91 +3,91 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply font-montserrat;
-    color: #21201f;
-  }
+	body {
+		@apply font-montserrat;
+		color: #21201f;
+	}
 
-  body * {
-    /* ANIMATE EVERYTHING, because there's no one to oppose me on this great idea muhahaha */
-    @apply transition-all;
-  }
+	body * {
+		/* ANIMATE EVERYTHING, because there's no one to oppose me on this great idea muhahaha */
+		@apply transition-all;
+	}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply tracking-wider;
-    color: #434343;
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply tracking-wider;
+		color: #434343;
+	}
 
-  h1 {
-    @apply tracking-widest;
-  }
+	h1 {
+		@apply tracking-widest;
+	}
 
-  p,
-  address {
-    @apply font-cardo;
-  }
+	p,
+	address {
+		@apply font-cardo;
+	}
 
-  input[type='text'] {
-    @apply focus-gold block w-full transition-none;
-  }
+	input[type='text'] {
+		@apply focus-gold block w-full transition-none;
+	}
 
-  button,
-  .button {
-    @apply flex items-center justify-center px-10 py-4 text-lg uppercase font-montserrat font-semibold border border-black hover:text-white bg-gray-100 hover:bg-gray-800 mb-4;
-  }
+	button,
+	.button {
+		@apply flex items-center justify-center px-10 py-4 text-lg uppercase font-montserrat font-semibold border border-black hover:text-white bg-gray-100 hover:bg-gray-800 mb-4;
+	}
 
-  .font-cardo {
-    @apply tracking-wide;
-  }
+	.font-cardo {
+		@apply tracking-wide;
+	}
 
-  .focus-gold {
-    @apply focus:ring-gold focus:ring-offset-gold focus:border-gold;
-  }
+	.focus-gold {
+		@apply focus:ring-gold focus:ring-offset-gold focus:border-gold;
+	}
 
-  .button--small {
-    @apply text-sm p-4;
-  }
+	.button--small {
+		@apply text-sm p-4;
+	}
 }
 
 .has-background {
-  background-image: url(/assets/poetry/marble_background.jpg);
+	background-image: url(/assets/poetry/marble_background.jpg);
 }
 
 .hero-image {
-  background-image: url(/assets/us-smiling-in-greenhouse.jpg);
+	background-image: url(/assets/us-smiling-in-greenhouse.jpg);
 }
 
 .bottom-hero-image {
-  background-image: url(/assets/us-in-winter.jpg);
+	background-image: url(/assets/us-in-winter.jpg);
 }
 
 .hero-accent-top-left {
-  background-image: url(/assets/poetry/nohero_top.png);
+	background-image: url(/assets/poetry/nohero_top.png);
 }
 
 .hero-accent-bottom-left {
-  background-image: url(/assets/poetry/top_left.png);
-  top: 85%;
+	background-image: url(/assets/poetry/top_left.png);
+	top: 85%;
 }
 
 .hero-accent-bottom-right {
-  background-image: url(/assets/poetry/top_right.png);
-  top: 64%;
+	background-image: url(/assets/poetry/top_right.png);
+	top: 64%;
 }
 
 .page-accent-bottom-right {
-  background-image: url(/assets/poetry/bottom_right.png);
+	background-image: url(/assets/poetry/bottom_right.png);
 }
 
 .accent-top-left {
-  background-image: url(/assets/poetry/nonhp_splatter_01.png);
+	background-image: url(/assets/poetry/nonhp_splatter_01.png);
 }
 
 .accent-top-right {
-  background-image: url(/assets/poetry/nonhp_splatter_02.png);
+	background-image: url(/assets/poetry/nonhp_splatter_02.png);
 }
