@@ -53,10 +53,15 @@ export default function SuccessDialog({ onCloseDialog }: Props) {
                 </div>
                 <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title as="h3" className="mb-4 font-medium">
-                    RSVP successful
+                    You're registered!
                   </Dialog.Title>
                   <div>
-                    <p>You're registered!</p>
+                    <p>
+                      If you need to change your answer at any time, you can
+                      fill in your name on the RSVP page like you did when you
+                      first got here. After July 30, 2022, you will have to
+                      contact us directly.
+                    </p>
                   </div>
                 </div>
               </div>
