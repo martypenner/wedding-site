@@ -14,14 +14,13 @@ async function main() {
           ceremony: {
             select: {
               willAttend: true,
-              whereSeated: true,
             },
           },
           reception: {
             select: {
               willAttend: true,
               dietaryRestrictions: true,
-              anythingElse: true,
+              tuneThatWillMakeYouBoogie: true,
             },
           },
         },
@@ -64,20 +63,6 @@ async function main() {
   // use `console.dir` to print nested objects
   console.dir(allAttendees, { depth: null });
   console.dir(linkedAttendees, { depth: null });
-
-  await prisma.attendanceAnswer.update({
-    where: {
-      id: 1,
-    },
-    data: {
-      ceremony: {
-        update: {
-          willAttend: false,
-          whereSeated: 'there',
-        },
-      },
-    },
-  });
 }
 
 main()

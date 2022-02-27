@@ -1,3 +1,4 @@
+import { AppProps } from 'next/app';
 import '../styles/app.css';
 
 if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
@@ -6,7 +7,7 @@ if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   });
 }
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
 

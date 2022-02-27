@@ -43,19 +43,18 @@ model Ceremony {
   AttendanceAnswer   AttendanceAnswer @relation(fields: [attendanceAnswerId], references: [id])
   attendanceAnswerId Int              @unique
   willAttend         Boolean
-  whereSeated        String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Reception {
-  id                  Int              @id @default(autoincrement())
-  AttendanceAnswer    AttendanceAnswer @relation(fields: [attendanceAnswerId], references: [id])
-  attendanceAnswerId  Int              @unique
-  willAttend          Boolean
-  dietaryRestrictions String?
-  anythingElse        String?
+  id                        Int              @id @default(autoincrement())
+  AttendanceAnswer          AttendanceAnswer @relation(fields: [attendanceAnswerId], references: [id])
+  attendanceAnswerId        Int              @unique
+  willAttend                Boolean
+  dietaryRestrictions       String?
+  tuneThatWillMakeYouBoogie String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

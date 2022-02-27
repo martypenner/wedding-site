@@ -25,7 +25,6 @@ async function main() {
                 ceremony: {
                   create: {
                     willAttend: false,
-                    whereSeated: 'somewhere',
                   },
                 },
                 reception: {
@@ -43,14 +42,13 @@ async function main() {
           ceremony: {
             create: {
               willAttend: true,
-              whereSeated: 'here',
             },
           },
           reception: {
             create: {
               willAttend: true,
               dietaryRestrictions: 'seeds',
-              anythingElse: `don't like nuts`,
+              tuneThatWillMakeYouBoogie: 'Cat Stevens',
             },
           },
         },
@@ -63,7 +61,7 @@ async function main() {
     },
   });
 
-  console.dir({ theo }, { depth: null });
+  console.dir({ theo });
 }
 
 main()
