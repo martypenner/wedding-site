@@ -338,13 +338,13 @@ function Wizard() {
 							</p>
 						)}
 
-						<div className="hidden md:flex items-center justify-between divide-x divide-black mt-8">
-							<div className="w-1/2 py-16 pr-8">
+						<div className="grid grid-flow-col grid-cols-2 divide-x divide-black mt-8">
+							<div className="py-16 pr-8">
 								<CeremonyDateTime />
 								<CeremonyDetails />
 							</div>
 
-							<div className="w-1/2 py-16 pl-16 font-cardo text-center">
+							<div className="py-16 pl-16 font-cardo text-center">
 								{Array.from(partyMembers).map((name) => (
 									<div key={name} className="mb-16">
 										<p className="italic mb-4">{name}</p>
@@ -414,13 +414,13 @@ function Wizard() {
 							</div>
 						</div>
 
-						<div className="hidden md:flex items-center justify-between divide-x divide-black mt-8">
-							<div className="w-1/2 py-16 pr-8">
+						<div className="grid grid-flow-col grid-cols-2 divide-x divide-black">
+							<div className="py-16 pr-8">
 								<ReceptionDateTime />
 								<ReceptionDetails />
 							</div>
 
-							<div className="w-1/2 py-16 pl-16 font-cardo text-center">
+							<div className="py-16 pl-16 font-cardo text-center">
 								{Array.from(partyMembers).map((name) => (
 									<div key={name} className="mb-16">
 										<p className="italic mb-4">{name}</p>
