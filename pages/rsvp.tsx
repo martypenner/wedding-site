@@ -316,7 +316,6 @@ function Wizard() {
 				</form>
 			) : state.matches('respondingToWeddingEvents') ? (
 				<>
-					{/* todo: smaller devices */}
 					<form
 						className="mt-8 mx-4 text-center"
 						onSubmit={(event) => {
@@ -339,13 +338,13 @@ function Wizard() {
 							</p>
 						)}
 
-						<div className="grid grid-flow-col grid-cols-2 items-center divide-x divide-black mt-8">
-							<div className="py-16 pr-8">
+						<div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black mt-8">
+							<div className="py-4 sm:py-16 sm:pr-8">
 								<CeremonyDateTime />
 								<CeremonyDetails />
 							</div>
 
-							<div className="py-16 pl-16 font-cardo text-center">
+							<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
 								{Array.from(partyMembers).map((name) => (
 									<div key={name} className="mb-16">
 										<p className="italic mb-4">{name}</p>
@@ -415,13 +414,13 @@ function Wizard() {
 							</div>
 						</div>
 
-						<div className="grid grid-flow-col grid-cols-2 items-center divide-x divide-black">
-							<div className="py-16 pr-8">
+						<div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black">
+							<div className="py-4 sm:py-16 sm:pr-8">
 								<ReceptionDateTime />
 								<ReceptionDetails />
 							</div>
 
-							<div className="py-16 pl-16 font-cardo text-center">
+							<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
 								{Array.from(partyMembers).map((name) => (
 									<div key={name} className="mb-16">
 										<p className="italic mb-4">{name}</p>

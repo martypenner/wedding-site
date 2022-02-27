@@ -4,7 +4,7 @@ import champagne from '../public/assets/champagne.svg';
 
 function ReceptionDetails(props) {
 	return (
-		<>
+		<div className="border-b sm:border-0 border-black">
 			<div className="flex items-center justify-center my-8">
 				<Image
 					src={champagne}
@@ -28,7 +28,7 @@ function ReceptionDetails(props) {
 				If you have any dietary restrictions, let us know when you RSVP (Andrew
 				and Milana, we already know about yours).
 			</p>
-		</>
+		</div>
 	);
 }
 
