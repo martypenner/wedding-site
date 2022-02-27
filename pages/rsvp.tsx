@@ -515,8 +515,6 @@ function Wizard() {
 												</div>
 											</div>
 
-											{/* todo: fix broken line between sections */}
-
 											<div className="mt-6">
 												<label htmlFor="email" className="block">
 													Name a tune that will make you boogie
