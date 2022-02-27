@@ -148,7 +148,11 @@ const rsvpMachine = rsvpModel.createMachine({
       id: 'respondingToWeddingEvents',
       initial: 'answering',
       states: {
-        answering: {},
+        answering: {
+          on: {
+            attendanceAnswersSubmitted: 'submitting',
+          },
+        },
 
         submitting: {
           invoke: {
@@ -173,10 +177,15 @@ const rsvpMachine = rsvpModel.createMachine({
         successSubmitting: {
           on: {
             successDialogClosed: 'answering',
+            attendanceAnswersSubmitted: 'submitting',
           },
         },
 
-        errorSubmitting: {},
+        errorSubmitting: {
+          on: {
+            attendanceAnswersSubmitted: 'submitting',
+          },
+        },
       },
 
       on: {
@@ -195,8 +204,6 @@ const rsvpMachine = rsvpModel.createMachine({
             };
           }),
         },
-
-        attendanceAnswersSubmitted: '.submitting',
       },
     },
   },
