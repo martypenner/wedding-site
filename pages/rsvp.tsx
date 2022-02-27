@@ -5,6 +5,7 @@ import Image from 'next/image';
 import qs from 'qs';
 import React from 'react';
 import { createModel } from 'xstate/lib/model';
+import Address from '../components/Address';
 import ErrorNotification from '../components/ErrorNotification';
 import SuccessDialog from '../components/SuccessDialog';
 import InfoLayout from '../layouts/InfoLayout';
@@ -356,15 +357,7 @@ function Wizard() {
                   aria-hidden="true"
                 />
 
-                <address className="font-semibold not-italic mb-8">
-                  Seguin Valley Golf Club
-                  <br />
-                  144 Badger Road
-                  <br />
-                  Parry Sound, ON P2A 2W8
-                  <br />
-                  Canada
-                </address>
+                <Address />
 
                 <div>
                   <p className="mb-6">

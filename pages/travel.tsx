@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import Address from '../components/Address';
 import InfoLayout from '../layouts/InfoLayout';
 import shuttleVan from '../public/assets/van.svg';
 
@@ -54,15 +55,7 @@ export default function Schedule() {
               />
             </div>
 
-            <address className="font-semibold not-italic mb-8">
-              Seguin Valley Golf Club
-              <br />
-              144 Badger Road
-              <br />
-              Parry Sound, ON P2A 2W8
-              <br />
-              Canada
-            </address>
+            <Address />
           </div>
 
           <div className="font-cardo text-center">
@@ -163,15 +156,7 @@ export default function Schedule() {
                 aria-hidden="true"
               />
 
-              <address className="font-semibold not-italic mb-8">
-                Seguin Valley Golf Club
-                <br />
-                144 Badger Road
-                <br />
-                Parry Sound, ON P2A 2W8
-                <br />
-                Canada
-              </address>
+              <Address />
 
               <div>
                 <p className="mb-6">
