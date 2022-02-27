@@ -7,6 +7,8 @@ import { createModel } from 'xstate/lib/model';
 import CeremonyDateTime from '../components/CeremonyDateTime';
 import CeremonyDetails from '../components/CeremonyDetails';
 import ErrorNotification from '../components/ErrorNotification';
+import ReceptionDateTime from '../components/ReceptionDateTime';
+import ReceptionDetails from '../components/ReceptionDetails';
 import SuccessDialog from '../components/SuccessDialog';
 import InfoLayout from '../layouts/InfoLayout';
 import { AllowedEvents, Answers, RsvpContext } from '../utils/types';
@@ -335,10 +337,7 @@ function Wizard() {
               </p>
             )}
 
-            <div
-              key={Math.random()}
-              className="hidden md:flex items-center justify-between divide-x divide-black mt-8"
-            >
+            <div className="hidden md:flex items-center justify-between divide-x divide-black mt-8">
               <div className="w-1/2 py-16 pr-8">
                 <CeremonyDateTime />
                 <CeremonyDetails />
@@ -358,6 +357,82 @@ function Wizard() {
                           rsvpModel.events.attendanceAnswerChanged(
                             name,
                             'ceremony',
+                            {
+                              willAttend,
+                            }
+                          )
+                        );
+                      }}
+                    >
+                      <RadioGroup.Label className="sr-only">
+                        {name}'s RSVP
+                      </RadioGroup.Label>
+
+                      <div className="flex flex-row items-center justify-between space-x-4">
+                        {[true, false].map((willAttend) => (
+                          <RadioGroup.Option
+                            key={String(willAttend)}
+                            value={willAttend}
+                            className={({ active }) =>
+                              classNames(
+                                active ? 'focus-gold' : '',
+                                'flex-grow relative shadow-sm cursor-pointer sm:flex sm:justify-between focus:outline-none'
+                              )
+                            }
+                          >
+                            {({ checked }) => (
+                              <React.Fragment>
+                                <div className="flex items-center flex-grow">
+                                  <RadioGroup.Label
+                                    as="span"
+                                    className="button button--small m-0 flex-grow"
+                                  >
+                                    {willAttend
+                                      ? 'Will attend'
+                                      : 'Will not attend'}
+                                  </RadioGroup.Label>
+                                </div>
+
+                                <div
+                                  className={classNames(
+                                    checked
+                                      ? 'border-gold'
+                                      : 'border-transparent',
+                                    'absolute -inset-px border-4 pointer-events-none'
+                                  )}
+                                  aria-hidden="true"
+                                />
+                              </React.Fragment>
+                            )}
+                          </RadioGroup.Option>
+                        ))}
+                      </div>
+                    </RadioGroup>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden md:flex items-center justify-between divide-x divide-black mt-8">
+              <div className="w-1/2 py-16 pr-8">
+                <ReceptionDateTime />
+                <ReceptionDetails />
+              </div>
+
+              <div className="w-1/2 py-16 pl-16 font-cardo text-center">
+                {Array.from(partyMembers).map((name) => (
+                  <div key={name} className="mb-16">
+                    <p className="italic mb-4">{name}</p>
+
+                    <RadioGroup
+                      value={
+                        attendanceAnswers[name]?.reception.willAttend ?? true
+                      }
+                      onChange={(willAttend) => {
+                        send(
+                          rsvpModel.events.attendanceAnswerChanged(
+                            name,
+                            'reception',
                             {
                               willAttend,
                             }

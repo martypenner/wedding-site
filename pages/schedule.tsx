@@ -7,6 +7,7 @@ import {
 import Image from 'next/image';
 import CeremonyDetails from '../components/CeremonyDetails';
 import GoogleCalendar from '../components/GoogleCalendar';
+import ReceptionDateTime from '../components/ReceptionDateTime';
 import ReceptionDetails from '../components/ReceptionDetails';
 import VenueAddress from '../components/VenueAddress';
 import InfoLayout from '../layouts/InfoLayout';
@@ -228,18 +229,7 @@ export default function Schedule() {
           ),
         },
         {
-          left: (
-            <>
-              <h3 className="text-4xl md:text-5xl text-gray text-center uppercase mx-auto p-8">
-                Reception
-              </h3>
-
-              <div className="font-cardo italic text-center">
-                <p className="mb-6">Saturday, October 15, 2022</p>
-                <p>6:00 pm — 1:00 am</p>
-              </div>
-            </>
-          ),
+          left: <ReceptionDateTime />,
           right: (
             <>
               <div>
