@@ -316,6 +316,7 @@ function Wizard() {
 				</form>
 			) : state.matches('respondingToWeddingEvents') ? (
 				<>
+					{/* todo: smaller devices */}
 					<form
 						className="mt-8 mx-4 text-center"
 						onSubmit={(event) => {
@@ -338,7 +339,7 @@ function Wizard() {
 							</p>
 						)}
 
-						<div className="grid grid-flow-col grid-cols-2 divide-x divide-black mt-8">
+						<div className="grid grid-flow-col grid-cols-2 items-center divide-x divide-black mt-8">
 							<div className="py-16 pr-8">
 								<CeremonyDateTime />
 								<CeremonyDetails />
@@ -414,7 +415,7 @@ function Wizard() {
 							</div>
 						</div>
 
-						<div className="grid grid-flow-col grid-cols-2 divide-x divide-black">
+						<div className="grid grid-flow-col grid-cols-2 items-center divide-x divide-black">
 							<div className="py-16 pr-8">
 								<ReceptionDateTime />
 								<ReceptionDetails />

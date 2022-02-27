@@ -72,12 +72,12 @@ export default function InfoLayout({
 									return (
 										<div
 											key={Math.random()}
-											className={`hidden md:flex items-center justify-between divide-x divide-black ${
+											className={`grid grid-flow-col grid-cols-2 items-center divide-x divide-black ${
 												isFirst ? 'mt-9' : ''
 											}`}
 										>
-											<div className="w-1/2 py-16 pr-8">{block.left}</div>
-											<div className="w-1/2 py-16 pl-16 font-cardo text-center">
+											<div className="py-16 pr-8">{block.left}</div>
+											<div className="py-16 pl-16 font-cardo text-center">
 												{block.right}
 											</div>
 										</div>
