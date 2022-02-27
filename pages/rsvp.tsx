@@ -338,15 +338,22 @@ function Wizard() {
 							</p>
 						)}
 
-						<div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black mt-8">
+						<div className="grid grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black mt-8">
 							<div className="py-4 sm:py-16 sm:pr-8">
 								<CeremonyDateTime />
 								<CeremonyDetails />
 							</div>
 
 							<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
-								{Array.from(partyMembers).map((name) => (
-									<div key={name} className="mb-16">
+								{Array.from(partyMembers).map((name, index) => (
+									<div
+										key={name}
+										className={
+											index === Array.from(partyMembers).length - 1
+												? ''
+												: 'mb-16'
+										}
+									>
 										<p className="italic mb-4">{name}</p>
 
 										<RadioGroup
@@ -414,15 +421,22 @@ function Wizard() {
 							</div>
 						</div>
 
-						<div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black">
-							<div className="py-4 sm:py-16 sm:pr-8">
+						<div className="grid grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black">
+							<div className="pt-16 pb-4 sm:py-16 sm:pr-8">
 								<ReceptionDateTime />
 								<ReceptionDetails />
 							</div>
 
 							<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
-								{Array.from(partyMembers).map((name) => (
-									<div key={name} className="mb-16">
+								{Array.from(partyMembers).map((name, index) => (
+									<div
+										key={name}
+										className={
+											index === Array.from(partyMembers).length - 1
+												? ''
+												: 'mb-16'
+										}
+									>
 										<p className="italic mb-4">{name}</p>
 
 										<RadioGroup
@@ -551,7 +565,7 @@ function Wizard() {
 
 						<div data-netlify-recaptcha="true"></div>
 
-						<button type="submit" className="mx-auto">
+						<button type="submit" className="mx-auto mt-8">
 							{state.matches('respondingToWeddingEvents.submitting') ? (
 								<React.Fragment>
 									<svg
