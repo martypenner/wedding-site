@@ -14,8 +14,6 @@ import InfoLayout from '../layouts/InfoLayout';
 import { AllowedEvents, Answers, RsvpContext } from '../utils/types';
 import { classNames } from '../utils/utils';
 
-// todo: add "a tune that will make you boogie"
-
 const axios = axiosBase.create({
   baseURL: '/api/',
   timeout: 5_000,
@@ -200,6 +198,9 @@ const rsvpMachine = rsvpModel.createMachine({
                 [event.partyMember]: {
                   ...ctx.attendanceAnswers[event.partyMember],
                   [event.weddingEvent]: {
+                    ...ctx.attendanceAnswers[event.partyMember][
+                      event.weddingEvent
+                    ],
                     ...event.answers,
                   },
                 },
@@ -484,6 +485,67 @@ function Wizard() {
                         ))}
                       </div>
                     </RadioGroup>
+
+                    <div className="text-left mt-12">
+                      <div>
+                        <label htmlFor="email" className="block">
+                          Any dietary restrictions we should know of?
+                        </label>
+                        <div className="mt-2">
+                          <input
+                            type="text"
+                            name="dietaryRestrictions"
+                            id="dietaryRestrictions"
+                            value={
+                              attendanceAnswers[name]?.reception
+                                .dietaryRestrictions ?? ''
+                            }
+                            onChange={(event) => {
+                              send(
+                                rsvpModel.events.attendanceAnswerChanged(
+                                  name,
+                                  'reception',
+                                  {
+                                    dietaryRestrictions: event.target.value,
+                                  }
+                                )
+                              );
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* todo: fix broken line between sections */}
+
+                      <div className="mt-6">
+                        <label htmlFor="email" className="block">
+                          Name a tune that will make you boogie
+                        </label>
+                        <div className="mt-2">
+                          <input
+                            type="text"
+                            name="tuneThatWillMakeYouBoogie"
+                            id="tuneThatWillMakeYouBoogie"
+                            value={
+                              attendanceAnswers[name]?.reception
+                                .tuneThatWillMakeYouBoogie ?? ''
+                            }
+                            onChange={(event) => {
+                              send(
+                                rsvpModel.events.attendanceAnswerChanged(
+                                  name,
+                                  'reception',
+                                  {
+                                    tuneThatWillMakeYouBoogie:
+                                      event.target.value,
+                                  }
+                                )
+                              );
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

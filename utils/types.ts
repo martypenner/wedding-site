@@ -13,7 +13,7 @@ export type PartyMembers = string[];
 
 export type Answers = {
   ceremony: Required<Pick<Ceremony, 'willAttend'>>;
-  reception?: Required<
+  reception?: Partial<
     Pick<
       Reception,
       'willAttend' | 'dietaryRestrictions' | 'tuneThatWillMakeYouBoogie'
