@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import Address from '../components/Address';
+import VenueAddress from '../components/VenueAddress';
 import InfoLayout from '../layouts/InfoLayout';
 import shuttleVan from '../public/assets/van.svg';
 
@@ -55,7 +55,7 @@ export default function Schedule() {
               />
             </div>
 
-            <Address />
+            <VenueAddress />
           </div>
 
           <div className="font-cardo text-center">
@@ -156,7 +156,7 @@ export default function Schedule() {
                 aria-hidden="true"
               />
 
-              <Address />
+              <VenueAddress />
 
               <div>
                 <p className="mb-6">
