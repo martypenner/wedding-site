@@ -23,5 +23,8 @@ export type Answers = {
 
 export type AttendanceAnswers = Record<
 	RsvpContext['partyMembers'][number],
-	Answers
+	{
+		ceremony: Answers['ceremony'];
+		reception?: Required<Answers['reception']>;
+	}
 >;
