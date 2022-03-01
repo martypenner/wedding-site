@@ -531,7 +531,7 @@ function Wizard() {
 
 											<div className="mt-6">
 												<label htmlFor="email" className="block">
-													Name a tune that will make you boogie
+													Name a tune that will make you boogie.
 												</label>
 												<div className="mt-2">
 													<input
