@@ -86,18 +86,34 @@ export default async function handler(
 			include: includePayload,
 		});
 
-		// Group the individual and all group members to create a response object
-		const attendees = [matchingAttendee]
+		// Combine `partyMembers` and `partyMembersThatIncludedMe` so grouped
+		// attendees can respond for each other.
+		const allPartyMembers = [matchingAttendee]
 			.concat(linkedAttendees)
-			// Combine `partyMembers` and `partyMembersThatIncludedMe` so grouped
-			// attendees can respond for each other.
-			.map((attendee) => ({
-				...attendee,
-				partyMembers: attendee.partyMembers.concat(
-					attendee.partyMembersThatIncludedMe
-				),
-				partyMembersThatIncludedMe: undefined,
-			}));
+			.map((attendee) =>
+				attendee.partyMembers.concat(attendee.partyMembersThatIncludedMe)
+			)
+			.flat(Infinity);
+
+		// Finally grab all attendees based on the previous 2-degree-separated party
+		// members.
+		const allAttendees = await prisma.attendee.findMany({
+			where: {
+				id: {
+					// @ts-expect-error
+					in: allPartyMembers.map(({ id }) => id),
+				},
+			},
+			include: includePayload,
+		});
+
+		// Group the individual and all group members to create a response object
+		const attendees = allAttendees.map((attendee) => ({
+			...attendee,
+			partyMembers: allPartyMembers,
+			partyMembersThatIncludedMe: undefined,
+		}));
+		console.dir(attendees, { depth: null });
 
 		const response = attendees.reduce(
 			(acc, person) => {
