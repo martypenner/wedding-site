@@ -64,6 +64,7 @@ export default function SiteHeader() {
 							d="M4 6h16M4 12h16M4 18h16"
 						/>
 					</svg>
+					<span className="sr-only">Open menu</span>
 				</button>
 
 				<ClientOnlyPortal selector="body">
