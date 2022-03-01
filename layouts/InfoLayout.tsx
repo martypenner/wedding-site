@@ -61,7 +61,7 @@ export default function InfoLayout({
 							</div>
 
 							<div
-								className={`md:flex flex-col items-stretch justify-between ${
+								className={`hidden md:flex flex-col items-stretch justify-between ${
 									hasGap ? 'gap-16' : ''
 								}`}
 							>
