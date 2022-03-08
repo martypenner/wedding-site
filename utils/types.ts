@@ -28,3 +28,18 @@ export type AttendanceAnswers = Record<
 		reception?: Required<Answers['reception']>;
 	}
 >;
+
+export type AirtableGuestRecord = {
+	Guest: string;
+	'Guest (from Plus One)': string[];
+	'Plus One': string[];
+	'Guests (from Additional Guests)': string[];
+	'Additional Guests': string[];
+	'Invited Events': Event;
+	'Will Attend Ceremony': boolean;
+	'Will Attend Reception': boolean;
+	'Special Diet': string;
+	'Tune That Makes You Boogie': string;
+};
+
+type Event = ['Ceremony'] | ['Ceremony', 'Reception'];

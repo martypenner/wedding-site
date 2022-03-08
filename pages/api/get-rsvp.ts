@@ -1,6 +1,11 @@
+import { Record } from 'airtable';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from '../../prisma/client';
-import { AttendanceAnswers, PartyMembers } from '../../utils/types';
+import { client } from '../../airtable/client';
+import {
+	AirtableGuestRecord,
+	AttendanceAnswers,
+	PartyMembers,
+} from '../../utils/types';
 
 type Data = {
 	allowedEvents: ['ceremony'] | ['ceremony', 'reception'];
@@ -19,100 +24,92 @@ export default async function handler(
 
 	const { name: providedName } = req.body;
 	const name = providedName.trim().toLowerCase();
-	const includePayload = {
-		partyMembers: true,
-		partyMembersThatIncludedMe: true,
-		attendanceAnswer: {
-			select: {
-				ceremony: {
-					select: {
-						willAttend: true,
-					},
-				},
-				reception: {
-					select: {
-						willAttend: true,
-						dietaryRestrictions: true,
-						tuneThatWillMakeYouBoogie: true,
-					},
-				},
-			},
-		},
-	};
 
 	try {
-		// Using `findFirst` rather than `findUnique` so we can search
-		// case-insensitively.
-		const matchingAttendee = await prisma.attendee.findFirst({
-			where: {
-				name: {
-					equals: name,
-					mode: 'insensitive',
-				},
-			},
-			include: includePayload,
+		// Grab all guests, then find the one requested along with all connected
+		// ones. Airtable doesn't have a nice way of doing this built-in.
+		const allAttendeeRecords = await new Promise<Record<AirtableGuestRecord>[]>(
+			(resolve, reject) => {
+				let matchingRecords = [];
+
+				client<AirtableGuestRecord>('Guests')
+					.select({
+						view: 'Main View',
+					})
+					.eachPage(
+						// This function (`page`) will get called for each page of records.
+						function page(records, fetchNextPage) {
+							matchingRecords = matchingRecords.concat(records);
+
+							// To fetch the next page of records, call `fetchNextPage`. If there
+							// are more records, `page` will get called again. If there are no
+							// more records, `done` will get called.
+							fetchNextPage();
+						},
+						function done(err) {
+							if (err) {
+								reject(err);
+							} else {
+								resolve(matchingRecords);
+							}
+
+							return;
+						}
+					);
+			}
+		);
+
+		const partyLead = allAttendeeRecords.find((partyMember) => {
+			return new Set(
+				[
+					partyMember.get('Guest'),
+					partyMember.get('Guest (from Plus One)')?.[0],
+				]
+					.concat(partyMember.get('Guests (from Additional Guests)'))
+					.filter(Boolean)
+					.map((guest) => guest.trim().toLowerCase())
+			).has(name);
 		});
 
-		if (matchingAttendee == null) {
+		if (partyLead == null) {
 			res.status(404).end();
 			return;
 		}
 
-		const linkedAttendees = await prisma.attendee.findMany({
-			where: {
-				OR: [
-					{
-						partyMembers: {
-							some: {
-								name: {
-									equals: name,
-									mode: 'insensitive',
-								},
-							},
-						},
-					},
-					{
-						partyMembersThatIncludedMe: {
-							some: {
-								name: {
-									equals: name,
-									mode: 'insensitive',
-								},
-							},
-						},
-					},
-				],
-			},
-			include: includePayload,
-		});
+		// Filter the records down to just the ones that match the given name,
+		// including those who included the given name in their party.
+		const matchingAttendeeRecords = [partyLead].concat(
+			allAttendeeRecords.filter((partyMember) => {
+				return [partyLead.get('Plus One')?.[0]]
+					.concat(partyLead.get('Additional Guests'))
+					.filter(Boolean)
+					.includes(partyMember.id);
+			})
+		);
 
-		// Combine `partyMembers` and `partyMembersThatIncludedMe` so grouped
-		// attendees can respond for each other.
-		const allPartyMembers = [matchingAttendee]
-			.concat(linkedAttendees)
-			.map((attendee) =>
-				attendee.partyMembers.concat(attendee.partyMembersThatIncludedMe)
-			)
-			.flat(Infinity);
+		console.dir(matchingAttendeeRecords, { depth: null });
 
-		// Finally grab all attendees based on the previous 2-degree-separated party
-		// members.
-		const allAttendees = await prisma.attendee.findMany({
-			where: {
-				id: {
-					// @ts-expect-error
-					in: allPartyMembers.map(({ id }) => id),
+		const attendees = matchingAttendeeRecords.map((record) => {
+			return {
+				name: record.get('Guest'),
+				invitedEvents: partyLead
+					.get('Invited Events')
+					.map((event) => event.toUpperCase()),
+				// Provide defaults
+				attendanceAnswer: {
+					ceremony: {
+						willAttend: record.get('Will Attend Ceremony') ?? false,
+					},
+					reception: {
+						willAttend: record.get('Will Attend Reception') ?? false,
+						dietaryRestrictions: record.get('Special Diet') ?? '',
+						tuneThatMakesYouBoogie:
+							record.get('Tune That Makes You Boogie') ?? '',
+					},
 				},
-			},
-			include: includePayload,
+			};
 		});
 
-		// Group the individual and all group members to create a response object
-		const attendees = allAttendees.map((attendee) => ({
-			...attendee,
-			partyMembers: allPartyMembers,
-			partyMembersThatIncludedMe: undefined,
-		}));
 		console.dir(attendees, { depth: null });
 
 		const response = attendees.reduce(
@@ -123,21 +120,12 @@ export default async function handler(
 					// Build up allowed events for EVERYONE. We assume that the highest
 					// level of access applies to everyone in the party.
 					allowedEvents: new Set(
-						Array.from(acc.allowedEvents).concat(person.allowedEvents)
+						Array.from(acc.allowedEvents).concat(person.invitedEvents)
 					),
 					partyMembers: acc.partyMembers.add(person.name),
 					attendanceAnswers: {
 						...acc.attendanceAnswers,
-						[person.name]: {
-							// Provide defaults
-							ceremony: {
-								willAttend: false,
-								...person.attendanceAnswer?.ceremony,
-							},
-							reception: person.attendanceAnswer?.reception ?? {
-								willAttend: false,
-							},
-						},
+						[person.name]: person.attendanceAnswer,
 					},
 				};
 			},
