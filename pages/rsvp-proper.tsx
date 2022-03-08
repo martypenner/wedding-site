@@ -421,147 +421,149 @@ function Wizard() {
 							</div>
 						</div>
 
-						<div className="grid grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black">
-							<div className="pt-16 pb-4 sm:py-16 sm:pr-8">
-								<ReceptionDateTime />
-								<ReceptionDetails />
-							</div>
+						{allowedEvents.size > 1 && (
+							<div className="grid grid-cols-1 sm:grid-cols-2 items-center sm:divide-x divide-black">
+								<div className="pt-16 pb-4 sm:py-16 sm:pr-8">
+									<ReceptionDateTime />
+									<ReceptionDetails />
+								</div>
 
-							<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
-								{Array.from(partyMembers).map((name, index) => (
-									<div
-										key={name}
-										className={
-											index === Array.from(partyMembers).length - 1
-												? ''
-												: 'mb-16'
-										}
-									>
-										<p className="italic mb-4">{name}</p>
-
-										<RadioGroup
-											value={
-												attendanceAnswers[name]?.reception.willAttend ?? true
+								<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
+									{Array.from(partyMembers).map((name, index) => (
+										<div
+											key={name}
+											className={
+												index === Array.from(partyMembers).length - 1
+													? ''
+													: 'mb-16'
 											}
-											onChange={(willAttend) => {
-												send(
-													rsvpModel.events.attendanceAnswerChanged(
-														name,
-														'reception',
-														{
-															willAttend,
-														}
-													)
-												);
-											}}
 										>
-											<RadioGroup.Label className="sr-only">
-												{name}'s RSVP
-											</RadioGroup.Label>
+											<p className="italic mb-4">{name}</p>
 
-											<div className="flex flex-row items-center justify-between space-x-4">
-												{[true, false].map((willAttend) => (
-													<RadioGroup.Option
-														key={String(willAttend)}
-														value={willAttend}
-														className={({ active }) =>
-															classNames(
-																active ? 'focus-gold' : '',
-																'flex-grow relative shadow-sm cursor-pointer sm:flex sm:justify-between focus:outline-none'
-															)
-														}
-													>
-														{({ checked }) => (
-															<React.Fragment>
-																<div className="flex items-center flex-grow">
-																	<RadioGroup.Label
-																		as="span"
-																		className="button button--small m-0 flex-grow"
-																	>
-																		{willAttend
-																			? 'Will attend'
-																			: 'Will not attend'}
-																	</RadioGroup.Label>
-																</div>
+											<RadioGroup
+												value={
+													attendanceAnswers[name]?.reception.willAttend ?? true
+												}
+												onChange={(willAttend) => {
+													send(
+														rsvpModel.events.attendanceAnswerChanged(
+															name,
+															'reception',
+															{
+																willAttend,
+															}
+														)
+													);
+												}}
+											>
+												<RadioGroup.Label className="sr-only">
+													{name}'s RSVP
+												</RadioGroup.Label>
 
-																<div
-																	className={classNames(
-																		checked
-																			? 'border-gold'
-																			: 'border-transparent',
-																		'absolute -inset-px border-4 pointer-events-none'
-																	)}
-																	aria-hidden="true"
-																/>
-															</React.Fragment>
-														)}
-													</RadioGroup.Option>
-												))}
-											</div>
-										</RadioGroup>
-
-										<div className="text-left mt-12">
-											<div>
-												<label htmlFor="email" className="block">
-													Any dietary restrictions we should know of?
-												</label>
-												<div className="mt-2">
-													<input
-														type="text"
-														name="dietaryRestrictions"
-														id="dietaryRestrictions"
-														value={
-															attendanceAnswers[name]?.reception
-																.dietaryRestrictions ?? ''
-														}
-														onChange={(event) => {
-															send(
-																rsvpModel.events.attendanceAnswerChanged(
-																	name,
-																	'reception',
-																	{
-																		dietaryRestrictions: event.target.value,
-																	}
+												<div className="flex flex-row items-center justify-between space-x-4">
+													{[true, false].map((willAttend) => (
+														<RadioGroup.Option
+															key={String(willAttend)}
+															value={willAttend}
+															className={({ active }) =>
+																classNames(
+																	active ? 'focus-gold' : '',
+																	'flex-grow relative shadow-sm cursor-pointer sm:flex sm:justify-between focus:outline-none'
 																)
-															);
-														}}
-													/>
+															}
+														>
+															{({ checked }) => (
+																<React.Fragment>
+																	<div className="flex items-center flex-grow">
+																		<RadioGroup.Label
+																			as="span"
+																			className="button button--small m-0 flex-grow"
+																		>
+																			{willAttend
+																				? 'Will attend'
+																				: 'Will not attend'}
+																		</RadioGroup.Label>
+																	</div>
+
+																	<div
+																		className={classNames(
+																			checked
+																				? 'border-gold'
+																				: 'border-transparent',
+																			'absolute -inset-px border-4 pointer-events-none'
+																		)}
+																		aria-hidden="true"
+																	/>
+																</React.Fragment>
+															)}
+														</RadioGroup.Option>
+													))}
 												</div>
-											</div>
+											</RadioGroup>
 
-											<div className="mt-6">
-												<label htmlFor="email" className="block">
-													Name a tune that will make you boogie.
-												</label>
-												<div className="mt-2">
-													<input
-														type="text"
-														name="tuneThatWillMakeYouBoogie"
-														id="tuneThatWillMakeYouBoogie"
-														value={
-															attendanceAnswers[name]?.reception
-																.tuneThatWillMakeYouBoogie ?? ''
-														}
-														onChange={(event) => {
-															send(
-																rsvpModel.events.attendanceAnswerChanged(
-																	name,
-																	'reception',
-																	{
-																		tuneThatWillMakeYouBoogie:
-																			event.target.value,
-																	}
-																)
-															);
-														}}
-													/>
+											<div className="text-left mt-12">
+												<div>
+													<label htmlFor="email" className="block">
+														Any dietary restrictions we should know of?
+													</label>
+													<div className="mt-2">
+														<input
+															type="text"
+															name="dietaryRestrictions"
+															id="dietaryRestrictions"
+															value={
+																attendanceAnswers[name]?.reception
+																	.dietaryRestrictions ?? ''
+															}
+															onChange={(event) => {
+																send(
+																	rsvpModel.events.attendanceAnswerChanged(
+																		name,
+																		'reception',
+																		{
+																			dietaryRestrictions: event.target.value,
+																		}
+																	)
+																);
+															}}
+														/>
+													</div>
+												</div>
+
+												<div className="mt-6">
+													<label htmlFor="email" className="block">
+														Name a tune that will make you boogie.
+													</label>
+													<div className="mt-2">
+														<input
+															type="text"
+															name="tuneThatWillMakeYouBoogie"
+															id="tuneThatWillMakeYouBoogie"
+															value={
+																attendanceAnswers[name]?.reception
+																	.tuneThatWillMakeYouBoogie ?? ''
+															}
+															onChange={(event) => {
+																send(
+																	rsvpModel.events.attendanceAnswerChanged(
+																		name,
+																		'reception',
+																		{
+																			tuneThatWillMakeYouBoogie:
+																				event.target.value,
+																		}
+																	)
+																);
+															}}
+														/>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								))}
+									))}
+								</div>
 							</div>
-						</div>
+						)}
 
 						<div data-netlify-recaptcha="true"></div>
 
