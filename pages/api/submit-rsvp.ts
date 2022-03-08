@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import qs from 'qs';
-import { prisma } from '../../prisma/client';
+import { getAllRecords, updateRecords } from '../../airtable/client';
 import { AttendanceAnswers } from '../../utils/types';
 import { convertStringsToBooleans } from '../../utils/utils';
 
@@ -13,66 +13,39 @@ export default async function handler(
 		return;
 	}
 
-	const answersByPerson = convertStringsToBooleans(
-		qs.parse(req.body).attendanceAnswers as unknown as AttendanceAnswers
-	) as AttendanceAnswers;
-
 	try {
-		const names = Object.keys(answersByPerson);
-		const matchingAttendees = await prisma.attendee.findMany({
-			where: {
-				OR: names.map((name) => ({
-					name,
-				})),
-			},
+		const answersByPerson = convertStringsToBooleans(
+			qs.parse(req.body).attendanceAnswers as unknown as AttendanceAnswers
+		) as AttendanceAnswers;
+
+		const ids = Object.keys(answersByPerson);
+		const matchingAttendees = (await getAllRecords()).filter((record) => {
+			return ids.includes(record.id);
 		});
 
-		if (matchingAttendees.length !== names.length) {
+		if (matchingAttendees.length !== ids.length) {
 			throw new Error(`Not all names that were submitted match a person.`);
 		}
 
-		const promises = Object.entries(answersByPerson).map(
-			async ([name, answersByEvent]) => {
-				return prisma.attendee.update({
-					where: {
-						name,
+		console.dir(answersByPerson, { depth: null });
+
+		await updateRecords(
+			Object.entries(answersByPerson).map(([id, answersByEvent]) => {
+				return {
+					id,
+					fields: {
+						'Will Attend Ceremony': answersByEvent.ceremony.willAttend,
+						'Will Attend Reception':
+							answersByEvent.reception?.willAttend ?? false,
+						'Special Diet': answersByEvent.reception?.dietaryRestrictions ?? '',
+						'Tune That Makes You Boogie':
+							answersByEvent.reception?.tuneThatWillMakeYouBoogie ?? '',
+						'Has RSVPed': true,
 					},
-					data: {
-						attendanceAnswer: {
-							upsert: {
-								create: {
-									ceremony: {
-										create: answersByEvent.ceremony,
-									},
-									reception: {
-										create: answersByEvent.reception,
-									},
-								},
-								update: {
-									ceremony: {
-										upsert: {
-											create: answersByEvent.ceremony,
-											update: answersByEvent.ceremony,
-										},
-									},
-									reception:
-										answersByEvent.reception == null
-											? undefined
-											: {
-													upsert: {
-														create: answersByEvent.reception,
-														update: answersByEvent.reception,
-													},
-											  },
-								},
-							},
-						},
-					},
-				});
-			}
+				};
+			})
 		);
 
-		await Promise.allSettled(promises);
 		res.status(200).json(null);
 	} catch (error) {
 		console.info(error);

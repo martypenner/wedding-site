@@ -1,11 +1,6 @@
-import { Record } from 'airtable';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { client } from '../../airtable/client';
-import {
-	AirtableGuestRecord,
-	AttendanceAnswers,
-	PartyMembers,
-} from '../../utils/types';
+import { getAllRecords } from '../../airtable/client';
+import { AttendanceAnswers, PartyMembers } from '../../utils/types';
 
 type Data = {
 	allowedEvents: ['ceremony'] | ['ceremony', 'reception'];
@@ -28,36 +23,7 @@ export default async function handler(
 	try {
 		// Grab all guests, then find the one requested along with all connected
 		// ones. Airtable doesn't have a nice way of doing this built-in.
-		const allAttendeeRecords = await new Promise<Record<AirtableGuestRecord>[]>(
-			(resolve, reject) => {
-				let matchingRecords = [];
-
-				client<AirtableGuestRecord>('Guests')
-					.select({
-						view: 'Main View',
-					})
-					.eachPage(
-						// This function (`page`) will get called for each page of records.
-						function page(records, fetchNextPage) {
-							matchingRecords = matchingRecords.concat(records);
-
-							// To fetch the next page of records, call `fetchNextPage`. If there
-							// are more records, `page` will get called again. If there are no
-							// more records, `done` will get called.
-							fetchNextPage();
-						},
-						function done(err) {
-							if (err) {
-								reject(err);
-							} else {
-								resolve(matchingRecords);
-							}
-
-							return;
-						}
-					);
-			}
-		);
+		const allAttendeeRecords = await getAllRecords();
 
 		const partyLead = allAttendeeRecords.find((partyMember) => {
 			return new Set(
@@ -91,6 +57,7 @@ export default async function handler(
 
 		const attendees = matchingAttendeeRecords.map((record) => {
 			return {
+				id: record.id,
 				name: record.get('Guest'),
 				invitedEvents: partyLead
 					.get('Invited Events')
@@ -122,10 +89,13 @@ export default async function handler(
 					allowedEvents: new Set(
 						Array.from(acc.allowedEvents).concat(person.invitedEvents)
 					),
-					partyMembers: acc.partyMembers.add(person.name),
+					partyMembers: acc.partyMembers.add({
+						id: person.id,
+						name: person.name,
+					}),
 					attendanceAnswers: {
 						...acc.attendanceAnswers,
-						[person.name]: person.attendanceAnswer,
+						[person.id]: person.attendanceAnswer,
 					},
 				};
 			},

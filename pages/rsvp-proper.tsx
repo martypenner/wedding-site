@@ -32,7 +32,7 @@ const rsvpModel = createModel(
 			nameChanged: (name: string) => ({ name }),
 			nameSubmitted: () => ({}),
 			attendanceAnswerChanged: (
-				partyMember: RsvpContext['partyMembers'][number],
+				partyMember: RsvpContext['partyMembers'][number]['id'],
 				weddingEvent: AllowedEvents,
 				answers: Answers[typeof weddingEvent]
 			) => ({
@@ -345,9 +345,9 @@ function Wizard() {
 							</div>
 
 							<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
-								{Array.from(partyMembers).map((name, index) => (
+								{Array.from(partyMembers).map(({ id, name }, index) => (
 									<div
-										key={name}
+										key={id}
 										className={
 											index === Array.from(partyMembers).length - 1
 												? ''
@@ -357,13 +357,11 @@ function Wizard() {
 										<p className="italic mb-4">{name}</p>
 
 										<RadioGroup
-											value={
-												attendanceAnswers[name]?.ceremony.willAttend ?? true
-											}
+											value={attendanceAnswers[id]?.ceremony.willAttend ?? true}
 											onChange={(willAttend) => {
 												send(
 													rsvpModel.events.attendanceAnswerChanged(
-														name,
+														id,
 														'ceremony',
 														{
 															willAttend,
@@ -429,9 +427,9 @@ function Wizard() {
 								</div>
 
 								<div className="py-4 sm:py-16 sm:pl-16 font-cardo text-center">
-									{Array.from(partyMembers).map((name, index) => (
+									{Array.from(partyMembers).map(({ id, name }, index) => (
 										<div
-											key={name}
+											key={id}
 											className={
 												index === Array.from(partyMembers).length - 1
 													? ''
@@ -442,12 +440,12 @@ function Wizard() {
 
 											<RadioGroup
 												value={
-													attendanceAnswers[name]?.reception.willAttend ?? true
+													attendanceAnswers[id]?.reception.willAttend ?? true
 												}
 												onChange={(willAttend) => {
 													send(
 														rsvpModel.events.attendanceAnswerChanged(
-															name,
+															id,
 															'reception',
 															{
 																willAttend,
@@ -512,13 +510,13 @@ function Wizard() {
 															name="dietaryRestrictions"
 															id="dietaryRestrictions"
 															value={
-																attendanceAnswers[name]?.reception
+																attendanceAnswers[id]?.reception
 																	.dietaryRestrictions ?? ''
 															}
 															onChange={(event) => {
 																send(
 																	rsvpModel.events.attendanceAnswerChanged(
-																		name,
+																		id,
 																		'reception',
 																		{
 																			dietaryRestrictions: event.target.value,
@@ -540,13 +538,13 @@ function Wizard() {
 															name="tuneThatWillMakeYouBoogie"
 															id="tuneThatWillMakeYouBoogie"
 															value={
-																attendanceAnswers[name]?.reception
+																attendanceAnswers[id]?.reception
 																	.tuneThatWillMakeYouBoogie ?? ''
 															}
 															onChange={(event) => {
 																send(
 																	rsvpModel.events.attendanceAnswerChanged(
-																		name,
+																		id,
 																		'reception',
 																		{
 																			tuneThatWillMakeYouBoogie:
