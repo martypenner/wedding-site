@@ -13,7 +13,7 @@
     "generate:css": "tailwindcss -i ./app/styles/app.css -o ./app/styles/tailwind.css",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "start": "remix-serve build",
-    "start:mocks": "binode --require ./mocks -- @remix-run/serve:remix-serve build",
+    "start:mocks": "binode --require ./mocks --require dotenv/config -- @remix-run/serve:remix-serve build",
     "test": "vitest",
     "test:e2e:dev": "start-server-and-test dev http://localhost:3000 \"npx cypress open\"",
     "pretest:e2e:run": "npm run build",
