@@ -22,6 +22,7 @@ export default function RespondingToRsvp() {
 		partyMembers,
 		attendanceAnswers: initialAttendanceAnswers,
 	} = useLoaderData<RsvpData>();
+	// @ts-expect-error
 	const allowedEvents = new Set(initialAllowedEvents);
 	const [attendanceAnswers, setAttendanceAnswers] = React.useState(
 		initialAttendanceAnswers
