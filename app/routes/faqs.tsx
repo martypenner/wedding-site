@@ -18,7 +18,8 @@ const faqs: Faqs = [
 	},
 	{
 		question: 'Are you registered? Where?',
-		answer: 'Not yet, but we will be soon!',
+		answer:
+			'Nope! But we would LOVE if you contributed to our Italy fund! Either bring cash in an envelope to the wedding, or e-transfer marty@penner.me.',
 	},
 	{
 		question: 'Can I bring a date?',
