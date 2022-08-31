@@ -14,7 +14,8 @@ type Faqs = {
 const faqs: Faqs = [
 	{
 		question: 'When should I RSVP by?',
-		answer: 'As soon as you can, but no later than July 30, 2022.',
+		answer:
+			'RSPVs are now closed! Thanks for responding, and we look forward to celebrating with you!',
 	},
 	{
 		question: 'Are you registered? Where?',
