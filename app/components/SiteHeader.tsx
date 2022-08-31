@@ -114,6 +114,7 @@ export default function SiteHeader() {
 														'flex items-center justify-center px-3 py-2 text-3xl font-medium uppercase hover:underline'
 													)
 												}
+												onClick={() => setMenuIsVisible(false)}
 											>
 												<span className="truncate">{item.name}</span>
 											</NavLink>
