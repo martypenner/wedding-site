@@ -63,8 +63,8 @@ export default function SiteHeader() {
 					<span className="sr-only">Open menu</span>
 				</button>
 
-				<ClientOnlyPortal selector="body">
-					<Transition.Root show={menuIsVisible} as={React.Fragment}>
+				<Transition.Root show={menuIsVisible} as={React.Fragment}>
+					<ClientOnlyPortal selector="body">
 						<Dialog
 							as="div"
 							className="fixed inset-0 z-10 h-screen overflow-y-auto text-center"
@@ -123,8 +123,8 @@ export default function SiteHeader() {
 								</div>
 							</Transition.Child>
 						</Dialog>
-					</Transition.Root>
-				</ClientOnlyPortal>
+					</ClientOnlyPortal>
+				</Transition.Root>
 
 				<h1 className="m-0 flex-1 text-center text-2xl uppercase">
 					<Link to="/">Marty & Meaghan</Link>
