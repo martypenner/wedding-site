@@ -63,68 +63,70 @@ export default function SiteHeader() {
 					<span className="sr-only">Open menu</span>
 				</button>
 
-				<Transition.Root show={menuIsVisible} as={React.Fragment}>
+				{menuIsVisible && (
 					<ClientOnlyPortal selector="body">
-						<Dialog
-							as="div"
-							className="fixed inset-0 z-10 h-screen overflow-y-auto text-center"
-							onClose={setMenuIsVisible}
-						>
-							<Transition.Child
-								as={React.Fragment}
-								enter="ease-out duration-300"
-								enterFrom="opacity-0"
-								enterTo="opacity-100"
-								leave="ease-in duration-200"
-								leaveFrom="opacity-100"
-								leaveTo="opacity-0"
+						<Transition.Root show={menuIsVisible} as={React.Fragment}>
+							<Dialog
+								as="div"
+								className="fixed inset-0 z-10 h-screen overflow-y-auto text-center"
+								onClose={setMenuIsVisible}
 							>
-								<Dialog.Overlay className="fixed inset-0 bg-white bg-opacity-95 transition-opacity" />
-							</Transition.Child>
+								<Transition.Child
+									as={React.Fragment}
+									enter="ease-out duration-300"
+									enterFrom="opacity-0"
+									enterTo="opacity-100"
+									leave="ease-in duration-200"
+									leaveFrom="opacity-100"
+									leaveTo="opacity-0"
+								>
+									<Dialog.Overlay className="fixed inset-0 bg-white bg-opacity-95 transition-opacity" />
+								</Transition.Child>
 
-							<Transition.Child
-								as={React.Fragment}
-								enter="ease-out duration-300"
-								enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-								enterTo="opacity-100 translate-y-0 sm:scale-100"
-								leave="ease-in duration-200"
-								leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-								leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-							>
-								<div className="h-screen transform overflow-hidden p-8 text-left transition-all">
-									<div className="absolute top-0 left-0 pt-14 pl-4">
-										<button
-											type="button"
-											className="m-0 border-0 bg-transparent p-2 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-											onClick={() => setMenuIsVisible(false)}
-										>
-											<span className="sr-only">Close</span>
-											<XIcon className="h-6 w-6" aria-hidden="true" />
-										</button>
-									</div>
-
-									<nav className="mx-8 mt-3" aria-label="Site menu">
-										{navigationItems.map((item) => (
-											<NavLink
-												key={item.name}
-												to={item.href}
-												className={({ isActive }) =>
-													classNames(
-														isActive ? 'text-gold' : undefined,
-														'flex items-center justify-center px-3 py-2 text-3xl font-medium uppercase hover:underline'
-													)
-												}
+								<Transition.Child
+									as={React.Fragment}
+									enter="ease-out duration-300"
+									enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+									enterTo="opacity-100 translate-y-0 sm:scale-100"
+									leave="ease-in duration-200"
+									leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+									leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+								>
+									<div className="h-screen transform overflow-hidden p-8 text-left transition-all">
+										<div className="absolute top-0 left-0 pt-14 pl-4">
+											<button
+												type="button"
+												className="m-0 border-0 bg-transparent p-2 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
 												onClick={() => setMenuIsVisible(false)}
 											>
-												<span className="truncate">{item.name}</span>
-											</NavLink>
-										))}
-									</nav>
-								</div>
-							</Transition.Child>
-						</Dialog>
+												<span className="sr-only">Close</span>
+												<XIcon className="h-6 w-6" aria-hidden="true" />
+											</button>
+										</div>
+
+										<nav className="mx-8 mt-3" aria-label="Site menu">
+											{navigationItems.map((item) => (
+												<NavLink
+													key={item.name}
+													to={item.href}
+													className={({ isActive }) =>
+														classNames(
+															isActive ? 'text-gold' : undefined,
+															'flex items-center justify-center px-3 py-2 text-3xl font-medium uppercase hover:underline'
+														)
+													}
+													onClick={() => setMenuIsVisible(false)}
+												>
+													<span className="truncate">{item.name}</span>
+												</NavLink>
+											))}
+										</nav>
+									</div>
+								</Transition.Child>
+							</Dialog>
+						</Transition.Root>
 					</ClientOnlyPortal>
-				</Transition.Root>
+				)}
 
 				<h1 className="m-0 flex-1 text-center text-2xl uppercase">
 					<Link to="/">Marty & Meaghan</Link>
