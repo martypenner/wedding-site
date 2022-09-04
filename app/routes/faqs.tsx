@@ -39,7 +39,8 @@ const faqs: Faqs = [
 	{
 		question:
 			'Will there be transportation to and from the hotels to the ceremony?',
-		answer: 'No. Please arrange something in advance if you plan to drink.',
+		answer:
+			'Not provided by us, but Parry Sound Taxi is available and are aware of the event. Their number is 705-746-1221, and they can usually be there within 20 minutes.',
 	},
 	{
 		question:
